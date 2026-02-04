@@ -10,6 +10,39 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Primary - 청남색 (Navy Blue) */
+  --color-primary: #1e3a5f;
+  --color-primary-light: #2d4a6f;
+  --color-primary-dark: #0f2a4f;
+
+  /* Secondary - 메탈릭 그레이 (Slate) */
+  --color-secondary: #64748b;
+  --color-secondary-light: #94a3b8;
+  --color-secondary-dark: #475569;
+
+  /* UI States */
+  --color-hover: #2d4a6f;
+  --color-active: #0f2a4f;
+  --color-disabled: #cbd5e1;
+
+  /* Backgrounds */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f1f5f9;
+  --color-bg-card: #ffffff;
+
+  /* Borders */
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  /* Text */
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+
+  /* Badges */
+  --color-badge-immediate: #dc2626;
+  --color-badge-promotion: #059669;
 }
 
 @media (prefers-color-scheme: dark) {

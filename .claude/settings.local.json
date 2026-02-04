@@ -4,7 +4,9 @@
       "Bash(git fetch:*)",
       "Bash(powershell:*)",
       "Bash(git checkout:*)",
-      "Bash(echo.)"
+      "Bash(echo.)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)"
     ]
   }
 }

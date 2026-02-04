@@ -17,13 +17,13 @@
 
 **Purpose**: Project initialization, types, and mock data foundation
 
-- [ ] T001 Update globals.css with project color variables in src/app/globals.css
-- [ ] T002 [P] Create Manufacturer type definition in src/types/manufacturer.ts
-- [ ] T003 [P] Create SaleCar type and SaleCarBadge enum in src/types/saleCar.ts
-- [ ] T004 [P] Create ReleasedCar type definition in src/types/releasedCar.ts
-- [ ] T005 [P] Create QuoteRequest type and related types in src/types/quote.ts
-- [ ] T006 [P] Create price formatter utility in src/utils/formatters.ts
-- [ ] T007 [P] Create phone number validator utility in src/utils/validators.ts
+- [x] T001 Update globals.css with project color variables in src/app/globals.css
+- [x] T002 [P] Create Manufacturer type definition in src/types/manufacturer.ts
+- [x] T003 [P] Create SaleCar type and SaleCarBadge enum in src/types/saleCar.ts
+- [x] T004 [P] Create ReleasedCar type definition in src/types/releasedCar.ts
+- [x] T005 [P] Create QuoteRequest type and related types in src/types/quote.ts
+- [x] T006 [P] Create price formatter utility in src/utils/formatters.ts
+- [x] T007 [P] Create phone number validator utility in src/utils/validators.ts
 
 ---
 
@@ -33,15 +33,15 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T008 [P] Create manufacturer mock data in src/data/mocks/manufacturers.ts
-- [ ] T009 [P] Create saleCar mock data in src/data/mocks/saleCars.ts
-- [ ] T010 [P] Create releasedCar mock data in src/data/mocks/releasedCars.ts
-- [ ] T011 [P] Implement manufacturer.service.ts in src/data/services/manufacturer.service.ts
-- [ ] T012 [P] Implement saleCar.service.ts in src/data/services/saleCar.service.ts
-- [ ] T013 [P] Implement releasedCar.service.ts in src/data/services/releasedCar.service.ts
-- [ ] T014 Create QuoteModalProvider context and useQuoteModal hook in src/hooks/useQuoteModal.tsx
-- [ ] T015 Create useCarFilter custom hook in src/hooks/useCarFilter.ts
-- [ ] T016 Update root layout with QuoteModalProvider in src/app/layout.tsx
+- [x] T008 [P] Create manufacturer mock data in src/data/mocks/manufacturers.ts
+- [x] T009 [P] Create saleCar mock data in src/data/mocks/saleCars.ts
+- [x] T010 [P] Create releasedCar mock data in src/data/mocks/releasedCars.ts
+- [x] T011 [P] Implement manufacturer.service.ts in src/data/services/manufacturer.service.ts
+- [x] T012 [P] Implement saleCar.service.ts in src/data/services/saleCar.service.ts
+- [x] T013 [P] Implement releasedCar.service.ts in src/data/services/releasedCar.service.ts
+- [x] T014 Create QuoteModalProvider context and useQuoteModal hook in src/hooks/useQuoteModal.tsx
+- [x] T015 Create useCarFilter custom hook in src/hooks/useCarFilter.ts
+- [x] T016 Update root layout with QuoteModalProvider in src/app/layout.tsx
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -55,12 +55,12 @@
 
 ### Implementation for User Story 1
 
-- [ ] T017 [P] [US1] Create CategoryTabs component (전체/국산/수입) in src/components/filters/CategoryTabs.tsx
-- [ ] T018 [P] [US1] Create ManufacturerFilter component (로고 카로셀) in src/components/filters/ManufacturerFilter.tsx
-- [ ] T019 [P] [US1] Create SearchInput component (비활성 placeholder) in src/components/filters/SearchInput.tsx
-- [ ] T020 [P] [US1] Create SaleCarCard component in src/components/cards/SaleCarCard.tsx
-- [ ] T021 [US1] Create SaleCarSection component in src/components/sections/SaleCarSection.tsx
-- [ ] T022 [US1] Integrate SaleCarSection into main page in src/app/page.tsx
+- [x] T017 [P] [US1] Create CategoryTabs component (전체/국산/수입) in src/components/filters/CategoryTabs.tsx
+- [x] T018 [P] [US1] Create ManufacturerFilter component (로고 카로셀) in src/components/filters/ManufacturerFilter.tsx
+- [x] T019 [P] [US1] Create SearchInput component (비활성 placeholder) in src/components/filters/SearchInput.tsx
+- [x] T020 [P] [US1] Create SaleCarCard component in src/components/cards/SaleCarCard.tsx
+- [x] T021 [US1] Create SaleCarSection component in src/components/sections/SaleCarSection.tsx
+- [x] T022 [US1] Integrate SaleCarSection into main page in src/app/page.tsx
 
 **Checkpoint**: User Story 1 완료 - 판매 차량 탐색 기능 동작 확인 가능
 
@@ -74,10 +74,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T023 [P] [US2] Implement quote.service.ts in src/data/services/quote.service.ts
-- [ ] T024 [US2] Create QuoteModal component with form in src/components/modals/QuoteModal.tsx
-- [ ] T025 [US2] Add QuoteModal rendering to layout or page in src/app/layout.tsx
-- [ ] T026 [US2] Connect SaleCarCard CTA to open modal with car info in src/components/cards/SaleCarCard.tsx
+- [x] T023 [P] [US2] Implement quote.service.ts in src/data/services/quote.service.ts
+- [x] T024 [US2] Create QuoteModal component with form in src/components/modals/QuoteModal.tsx
+- [x] T025 [US2] Add QuoteModal rendering to layout or page in src/app/layout.tsx
+- [x] T026 [US2] Connect SaleCarCard CTA to open modal with car info in src/components/cards/SaleCarCard.tsx
 
 **Checkpoint**: User Story 2 완료 - 견적 상담 신청 기능 동작 확인 가능
 
@@ -91,8 +91,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T027 [US3] Create HeroSection component in src/components/sections/HeroSection.tsx
-- [ ] T028 [US3] Integrate HeroSection into main page (최상단) in src/app/page.tsx
+- [x] T027 [US3] Create HeroSection component in src/components/sections/HeroSection.tsx
+- [x] T028 [US3] Integrate HeroSection into main page (최상단) in src/app/page.tsx
 
 **Checkpoint**: User Story 3 완료 - 히어로 섹션 표시 및 CTA 동작 확인 가능
 
@@ -106,9 +106,9 @@
 
 ### Implementation for User Story 4
 
-- [ ] T029 [P] [US4] Create ReleasedCarCard component in src/components/cards/ReleasedCarCard.tsx
-- [ ] T030 [US4] Create ReleasedCarSection component in src/components/sections/ReleasedCarSection.tsx
-- [ ] T031 [US4] Integrate ReleasedCarSection into main page in src/app/page.tsx
+- [x] T029 [P] [US4] Create ReleasedCarCard component in src/components/cards/ReleasedCarCard.tsx
+- [x] T030 [US4] Create ReleasedCarSection component in src/components/sections/ReleasedCarSection.tsx
+- [x] T031 [US4] Integrate ReleasedCarSection into main page in src/app/page.tsx
 
 **Checkpoint**: User Story 4 완료 - 출고 내역 섹션 동작 확인 가능
 
@@ -122,9 +122,9 @@
 
 ### Implementation for User Story 5
 
-- [ ] T032 [P] [US5] Create StrengthCard component in src/components/cards/StrengthCard.tsx
-- [ ] T033 [US5] Create StrengthSection component in src/components/sections/StrengthSection.tsx
-- [ ] T034 [US5] Integrate StrengthSection into main page in src/app/page.tsx
+- [x] T032 [P] [US5] Create StrengthCard component in src/components/cards/StrengthCard.tsx
+- [x] T033 [US5] Create StrengthSection component in src/components/sections/StrengthSection.tsx
+- [x] T034 [US5] Integrate StrengthSection into main page in src/app/page.tsx
 
 **Checkpoint**: User Story 5 완료 - 핵심 강점 섹션 동작 확인 가능
 
@@ -138,8 +138,8 @@
 
 ### Implementation for User Story 6
 
-- [ ] T035 [US6] Create FAQSection component with accordion in src/components/sections/FAQSection.tsx
-- [ ] T036 [US6] Integrate FAQSection into main page in src/app/page.tsx
+- [x] T035 [US6] Create FAQSection component with accordion in src/components/sections/FAQSection.tsx
+- [x] T036 [US6] Integrate FAQSection into main page in src/app/page.tsx
 
 **Checkpoint**: User Story 6 완료 - FAQ 아코디언 동작 확인 가능
 
@@ -153,10 +153,10 @@
 
 ### Implementation for User Story 7
 
-- [ ] T037 [US7] Create Header component with sticky navigation in src/components/layout/Header.tsx
-- [ ] T038 [US7] Create Footer component with business info in src/components/layout/Footer.tsx
-- [ ] T039 [US7] Integrate Header and Footer into layout in src/app/layout.tsx
-- [ ] T040 [US7] Add section IDs for scroll navigation in src/app/page.tsx
+- [x] T037 [US7] Create Header component with sticky navigation in src/components/layout/Header.tsx
+- [x] T038 [US7] Create Footer component with business info in src/components/layout/Footer.tsx
+- [x] T039 [US7] Integrate Header and Footer into layout in src/app/layout.tsx
+- [x] T040 [US7] Add section IDs for scroll navigation in src/app/page.tsx
 
 **Checkpoint**: User Story 7 완료 - 헤더/푸터 및 스크롤 네비게이션 동작 확인 가능
 
@@ -166,11 +166,11 @@
 
 **Purpose**: Edge cases, 반응형 검증, 최종 정리
 
-- [ ] T041 [P] Add empty state handling to SaleCarSection (차량 없음 메시지) in src/components/sections/SaleCarSection.tsx
-- [ ] T042 [P] Add empty state handling to ReleasedCarSection (출고 내역 없음) in src/components/sections/ReleasedCarSection.tsx
-- [ ] T043 [P] Add placeholder image for image load failures in public/images/placeholders/
-- [ ] T044 Verify responsive layout on mobile (320px), tablet (768px), desktop (1024px+)
-- [ ] T045 Final integration test: full page flow validation
+- [x] T041 [P] Add empty state handling to SaleCarSection (차량 없음 메시지) in src/components/sections/SaleCarSection.tsx
+- [x] T042 [P] Add empty state handling to ReleasedCarSection (출고 내역 없음) in src/components/sections/ReleasedCarSection.tsx
+- [x] T043 [P] Add placeholder image for image load failures in public/images/placeholders/
+- [x] T044 Verify responsive layout on mobile (320px), tablet (768px), desktop (1024px+)
+- [x] T045 Final integration test: full page flow validation
 
 ---
 
