@@ -18,7 +18,7 @@ export default function Header() {
   const { openModal } = useQuoteModal();
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-border">
+    <header className="sticky top-0 z-40 bg-gradient-to-r from-white via-gray-50 to-white border-b border-border backdrop-blur-sm">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
@@ -51,7 +51,7 @@ export default function Header() {
             </button>
             <button
               onClick={() => openModal()}
-              className="px-4 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+              className="px-4 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-primary transition-all shadow-md"
             >
               빠른 상담
             </button>

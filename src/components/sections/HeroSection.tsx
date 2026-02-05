@@ -6,16 +6,18 @@ export default function HeroSection() {
   const { openModal } = useQuoteModal();
 
   return (
-    <section className="relative bg-gradient-to-br from-primary to-primary-dark text-white py-20 md:py-32">
-      {/* 배경 오버레이 */}
-      <div className="absolute inset-0 bg-black/20" />
+    <section className="relative bg-gradient-to-br from-[#2d3748] via-[#4a5568] to-[#1a202c] text-white py-20 md:py-32 overflow-hidden">
+      {/* 메탈릭 광택 효과 */}
+      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/10" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 max-w-5xl relative z-10">
         <div className="max-w-2xl">
           {/* 타이틀 */}
           <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
             신차 장기 렌트 & 리스<br />
-            <span className="text-secondary-light">S&C</span>와 함께하세요
+            S&C와 함께하세요
           </h1>
 
           {/* 설명 */}
@@ -27,7 +29,7 @@ export default function HeroSection() {
           {/* CTA 버튼 */}
           <button
             onClick={() => openModal()}
-            className="px-8 py-4 bg-white text-primary font-bold rounded-lg hover:bg-bg-secondary transition-colors text-lg"
+            className="px-8 py-4 bg-gradient-to-r from-white via-gray-100 to-white text-primary-dark font-bold rounded-lg hover:from-gray-100 hover:via-white hover:to-gray-100 transition-all text-lg shadow-lg border border-white/50"
           >
             무료 견적 받기
           </button>

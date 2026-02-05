@@ -69,11 +69,11 @@ const strengths = [
 
 export default function StrengthSection() {
   return (
-    <section className="py-16 bg-bg-secondary">
+    <section className="py-16 bg-gradient-to-b from-gray-100 to-gray-50">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* 섹션 헤더 */}
         <h2 className="text-2xl font-bold text-text-primary mb-2 text-center">
-          왜 S&C 신차장기렌트리스일까?
+          왜 <span className="text-[#1e3a5f]">S&C</span> 신차장기렌트리스일까?
         </h2>
         <p className="text-text-secondary text-center mb-10">
           S&C만의 차별화된 서비스를 경험해보세요

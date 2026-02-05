@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #1e293b;
 }
 
 @theme inline {
@@ -11,45 +11,44 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Primary - 청남색 (Navy Blue) */
-  --color-primary: #1e3a5f;
-  --color-primary-light: #2d4a6f;
-  --color-primary-dark: #0f2a4f;
+  /* Primary - 메탈릭 스틸 블루 */
+  --color-primary: #4a5568;
+  --color-primary-light: #718096;
+  --color-primary-dark: #2d3748;
 
-  /* Secondary - 메탈릭 그레이 (Slate) */
-  --color-secondary: #64748b;
-  --color-secondary-light: #94a3b8;
-  --color-secondary-dark: #475569;
+  /* Secondary - 메탈릭 실버 */
+  --color-secondary: #a0aec0;
+  --color-secondary-light: #cbd5e0;
+  --color-secondary-dark: #718096;
+
+  /* Accent - 크롬 블루 */
+  --color-accent: #3182ce;
+  --color-accent-light: #63b3ed;
+  --color-accent-dark: #2c5282;
 
   /* UI States */
-  --color-hover: #2d4a6f;
-  --color-active: #0f2a4f;
-  --color-disabled: #cbd5e1;
+  --color-hover: #718096;
+  --color-active: #2d3748;
+  --color-disabled: #e2e8f0;
 
-  /* Backgrounds */
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f1f5f9;
+  /* Backgrounds - 메탈릭 그라데이션 느낌 */
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #edf2f7;
   --color-bg-card: #ffffff;
+  --color-bg-metallic: linear-gradient(135deg, #f7fafc 0%, #edf2f7 50%, #e2e8f0 100%);
 
-  /* Borders */
-  --color-border: #e2e8f0;
-  --color-border-strong: #cbd5e1;
+  /* Borders - 실버 톤 */
+  --color-border: #cbd5e0;
+  --color-border-strong: #a0aec0;
 
   /* Text */
-  --color-text-primary: #1e293b;
-  --color-text-secondary: #64748b;
-  --color-text-muted: #94a3b8;
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-text-muted: #a0aec0;
 
   /* Badges */
-  --color-badge-immediate: #dc2626;
-  --color-badge-promotion: #059669;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-badge-immediate: #e53e3e;
+  --color-badge-promotion: #38a169;
 }
 
 body {

@@ -29,10 +29,10 @@ export default function SaleCarCard({ car }: SaleCarCardProps) {
   };
 
   return (
-    <div className="bg-bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-gradient-to-b from-white to-gray-50 border border-border rounded-xl overflow-hidden hover:shadow-xl hover:border-secondary transition-all duration-300 group">
       {/* 차량 이미지 */}
-      <div className="relative aspect-[4/3] bg-bg-secondary">
-        <div className="absolute inset-0 flex items-center justify-center text-text-muted">
+      <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100">
+        <div className="absolute inset-0 flex items-center justify-center text-text-muted group-hover:scale-105 transition-transform duration-300">
           {/* 플레이스홀더 - 실제 이미지로 교체 */}
           <span className="text-sm">{car.carName}</span>
         </div>
@@ -86,7 +86,7 @@ export default function SaleCarCard({ car }: SaleCarCardProps) {
         {/* CTA 버튼 */}
         <button
           onClick={handleConsultClick}
-          className="w-full py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dark transition-colors"
+          className="w-full py-3 bg-gradient-to-r from-primary via-primary-light to-primary text-white rounded-lg font-medium hover:from-primary-dark hover:via-primary hover:to-primary-dark transition-all shadow-md"
         >
           간편 상담 신청 &gt;
         </button>

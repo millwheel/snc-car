@@ -60,12 +60,12 @@ export default function FAQSection() {
           {faqs.map((faq) => (
             <div
               key={faq.id}
-              className="border border-border rounded-lg overflow-hidden"
+              className="border border-border rounded-xl overflow-hidden bg-gradient-to-b from-white to-gray-50 hover:border-secondary transition-colors"
             >
               {/* 질문 */}
               <button
                 onClick={() => toggleFAQ(faq.id)}
-                className="w-full flex items-center justify-between p-4 text-left bg-bg-card hover:bg-bg-secondary transition-colors"
+                className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
               >
                 <span className="font-medium text-text-primary pr-4">
                   {faq.question}
