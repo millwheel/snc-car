@@ -97,7 +97,7 @@ export default function QuoteModal() {
       const request: QuoteRequest = {
         ...formData,
         phone: normalizePhoneNumber(formData.phone),
-        selectedCarName: selectedCar?.carName,
+        selectedCarName: selectedCar?.name,
         selectedManufacturerName: selectedCar?.manufacturerName,
       };
 
@@ -198,7 +198,7 @@ export default function QuoteModal() {
               <div className="mb-4 p-3 bg-bg-secondary rounded-lg">
                 <p className="text-sm text-text-secondary">선택 차량</p>
                 <p className="font-medium text-text-primary">
-                  {selectedCar.manufacturerName} {selectedCar.carName}
+                  {selectedCar.manufacturerName} {selectedCar.name}
                 </p>
               </div>
             )}

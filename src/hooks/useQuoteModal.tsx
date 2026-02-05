@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
 interface SelectedCar {
-  carName: string;
+  name: string;
   manufacturerName: string;
 }
 

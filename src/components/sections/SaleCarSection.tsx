@@ -83,7 +83,7 @@ export default function SaleCarSection() {
         {filteredCars.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredCars.slice(0, 12).map((car) => (
-              <SaleCarCard key={car.id} car={car} />
+              <SaleCarCard key={car.id} car={car} manufacturers={manufacturers} />
             ))}
           </div>
         ) : (

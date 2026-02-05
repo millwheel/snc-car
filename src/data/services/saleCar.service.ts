@@ -5,15 +5,12 @@ import type { ManufacturerCategory } from '@/types/manufacturer';
 
 /**
  * 모든 판매 차량 조회 (isVisible=true, 정렬 적용)
- * 정렬: sortOrder ASC, createdAt DESC
+ * 정렬: createdAt DESC
  */
 export async function getSaleCars(): Promise<SaleCar[]> {
   return mockSaleCars
     .filter((car) => car.isVisible)
     .sort((a, b) => {
-      if (a.sortOrder !== b.sortOrder) {
-        return a.sortOrder - b.sortOrder;
-      }
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 }
@@ -22,10 +19,10 @@ export async function getSaleCars(): Promise<SaleCar[]> {
  * 제조사별 판매 차량 조회
  */
 export async function getSaleCarsByManufacturer(
-  manufacturerCode: string
+  manufacturerId: string
 ): Promise<SaleCar[]> {
   const cars = await getSaleCars();
-  return cars.filter((car) => car.manufacturerCode === manufacturerCode);
+  return cars.filter((car) => car.manufacturerId === manufacturerId);
 }
 
 /**
@@ -35,9 +32,9 @@ export async function getSaleCarsByCategory(
   category: ManufacturerCategory
 ): Promise<SaleCar[]> {
   const manufacturers = await getManufacturersByCategory(category);
-  const validCodes = manufacturers.map((m) => m.code);
+  const validIds = manufacturers.map((m) => m.id);
   const cars = await getSaleCars();
-  return cars.filter((car) => validCodes.includes(car.manufacturerCode));
+  return cars.filter((car) => validIds.includes(car.manufacturerId));
 }
 
 /**
@@ -45,18 +42,18 @@ export async function getSaleCarsByCategory(
  */
 export async function getFilteredSaleCars(params: {
   category?: ManufacturerCategory;
-  manufacturerCode?: string;
+  manufacturerId?: string;
 }): Promise<SaleCar[]> {
   let cars = await getSaleCars();
 
   if (params.category) {
     const manufacturers = await getManufacturersByCategory(params.category);
-    const validCodes = manufacturers.map((m) => m.code);
-    cars = cars.filter((car) => validCodes.includes(car.manufacturerCode));
+    const validIds = manufacturers.map((m) => m.id);
+    cars = cars.filter((car) => validIds.includes(car.manufacturerId));
   }
 
-  if (params.manufacturerCode) {
-    cars = cars.filter((car) => car.manufacturerCode === params.manufacturerCode);
+  if (params.manufacturerId) {
+    cars = cars.filter((car) => car.manufacturerId === params.manufacturerId);
   }
 
   return cars;

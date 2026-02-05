@@ -62,9 +62,9 @@ export default function ManufacturerFilter({
         {manufacturers.map((manufacturer) => (
           <button
             key={manufacturer.id}
-            onClick={() => handleSelect(manufacturer.code)}
+            onClick={() => handleSelect(manufacturer.id)}
             className={`flex-shrink-0 flex flex-col items-center justify-center w-24 h-20 rounded-lg border-2 transition-all ${
-              selectedCode === manufacturer.code
+              selectedCode === manufacturer.id
                 ? 'border-primary bg-primary/5'
                 : 'border-border bg-white hover:border-secondary'
             }`}

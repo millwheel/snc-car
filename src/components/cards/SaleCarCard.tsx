@@ -1,10 +1,12 @@
 'use client';
 
 import { SaleCarBadge, type SaleCar } from '@/types/saleCar';
+import type { Manufacturer } from '@/types/manufacturer';
 import { useQuoteModal } from '@/hooks/useQuoteModal';
 
 interface SaleCarCardProps {
   car: SaleCar;
+  manufacturers: Manufacturer[];
 }
 
 function getBadgeColor(badge: SaleCarBadge): string {
@@ -18,13 +20,16 @@ function getBadgeColor(badge: SaleCarBadge): string {
   }
 }
 
-export default function SaleCarCard({ car }: SaleCarCardProps) {
+export default function SaleCarCard({ car, manufacturers }: SaleCarCardProps) {
   const { openModal } = useQuoteModal();
+
+  const manufacturer = manufacturers.find((m) => m.id === car.manufacturerId);
+  const manufacturerName = manufacturer?.name ?? '';
 
   const handleConsultClick = () => {
     openModal({
-      carName: car.carName,
-      manufacturerName: car.manufacturerName,
+      name: car.name,
+      manufacturerName,
     });
   };
 
@@ -34,7 +39,7 @@ export default function SaleCarCard({ car }: SaleCarCardProps) {
       <div className="relative aspect-[4/3] bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100">
         <div className="absolute inset-0 flex items-center justify-center text-text-muted group-hover:scale-105 transition-transform duration-300">
           {/* 플레이스홀더 - 실제 이미지로 교체 */}
-          <span className="text-sm">{car.carName}</span>
+          <span className="text-sm">{car.name}</span>
         </div>
 
         {/* 뱃지 */}
@@ -58,14 +63,17 @@ export default function SaleCarCard({ car }: SaleCarCardProps) {
         <div className="flex items-center gap-2 mb-2">
           <div className="w-6 h-6 bg-bg-secondary rounded-full flex items-center justify-center">
             <span className="text-[10px] font-bold text-text-secondary">
-              {car.manufacturerName.slice(0, 2)}
+              {manufacturerName.slice(0, 2)}
             </span>
           </div>
-          <span className="text-sm text-text-secondary">{car.manufacturerName}</span>
+          <span className="text-sm text-text-secondary">{manufacturerName}</span>
         </div>
 
         {/* 차량명 */}
-        <h3 className="text-lg font-bold text-text-primary mb-3">{car.carName}</h3>
+        <h3 className="text-lg font-bold text-text-primary mb-1">{car.name}</h3>
+
+        {/* 차량 설명 */}
+        <p className="text-xs text-text-secondary mb-3 line-clamp-2">{car.description}</p>
 
         {/* 가격 정보 */}
         <div className="space-y-1 mb-4">

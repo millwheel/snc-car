@@ -22,13 +22,13 @@ export function useCarFilter(manufacturers: Manufacturer[], cars: SaleCar[]) {
 
     // 카테고리 필터 적용
     if (categoryFilter !== 'ALL') {
-      const validCodes = filteredManufacturers.map((m) => m.code);
-      result = result.filter((car) => validCodes.includes(car.manufacturerCode));
+      const validIds = filteredManufacturers.map((m) => m.id);
+      result = result.filter((car) => validIds.includes(car.manufacturerId));
     }
 
     // 제조사 필터 적용
     if (selectedManufacturer) {
-      result = result.filter((car) => car.manufacturerCode === selectedManufacturer);
+      result = result.filter((car) => car.manufacturerId === selectedManufacturer);
     }
 
     return result;
@@ -40,8 +40,8 @@ export function useCarFilter(manufacturers: Manufacturer[], cars: SaleCar[]) {
     setSelectedManufacturer(null);
   };
 
-  const handleManufacturerChange = (code: string | null) => {
-    setSelectedManufacturer(code);
+  const handleManufacturerChange = (id: string | null) => {
+    setSelectedManufacturer(id);
   };
 
   return {
