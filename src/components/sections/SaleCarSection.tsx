@@ -46,7 +46,7 @@ export default function SaleCarSection() {
   if (isLoading) {
     return (
       <section id="sale-cars" className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center text-text-muted">로딩 중...</div>
         </div>
       </section>
@@ -55,7 +55,7 @@ export default function SaleCarSection() {
 
   return (
     <section id="sale-cars" className="py-16 bg-white">
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 max-w-6xl">
         {/* 섹션 헤더 */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <h2 className="text-2xl font-bold text-text-primary">판매 차량</h2>
@@ -81,7 +81,7 @@ export default function SaleCarSection() {
 
         {/* 차량 그리드 */}
         {filteredCars.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCars.slice(0, 12).map((car) => (
               <SaleCarCard key={car.id} car={car} manufacturers={manufacturers} />
             ))}

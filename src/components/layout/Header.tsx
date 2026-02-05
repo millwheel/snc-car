@@ -20,18 +20,17 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-gradient-to-r from-white via-gray-50 to-white border-b border-border backdrop-blur-sm">
       <div className="container mx-auto px-4 max-w-5xl">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* 로고 */}
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2"
           >
             <Image
-              src="/logo.png"
+              src="/images/logo.png"
               alt="S&C 신차장기렌트리스"
-              width={180}
+              width={140}
               height={50}
-              className="h-10 w-auto"
             />
           </button>
 
@@ -39,25 +38,25 @@ export default function Header() {
           <nav className="flex items-center gap-2 md:gap-4">
             <button
               onClick={() => scrollToSection('sale-cars')}
-              className="px-3 py-2 text-sm text-text-secondary hover:text-primary transition-colors hidden sm:block"
+              className="px-3 py-2 text-base text-text-secondary hover:text-primary transition-colors hidden sm:block"
             >
               판매 차량
             </button>
             <button
               onClick={() => scrollToSection('released-cars')}
-              className="px-3 py-2 text-sm text-text-secondary hover:text-primary transition-colors hidden sm:block"
+              className="px-3 py-2 text-base text-text-secondary hover:text-primary transition-colors hidden sm:block"
             >
               출고 내역
             </button>
             <button
               onClick={() => openModal()}
-              className="px-4 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:bg-primary transition-all shadow-md"
+              className="px-4 py-2 text-base font-medium bg-primary text-white rounded-lg hover:bg-primary transition-all shadow-md"
             >
               빠른 상담
             </button>
             <a
               href="tel:0000-0000"
-              className="px-4 py-2 text-sm font-medium border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center gap-1"
+              className="px-4 py-2 h-10 text-base font-medium border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center gap-1"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
