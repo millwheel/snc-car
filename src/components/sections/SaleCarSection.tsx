@@ -45,7 +45,7 @@ export default function SaleCarSection() {
 
   if (isLoading) {
     return (
-      <section id="sale-cars" className="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+      <section id="sale-cars" className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center text-text-muted">로딩 중...</div>
         </div>
@@ -54,7 +54,7 @@ export default function SaleCarSection() {
   }
 
   return (
-    <section id="sale-cars" className="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section id="sale-cars" className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* 섹션 헤더 */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">

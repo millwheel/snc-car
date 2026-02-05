@@ -224,16 +224,16 @@ export default function QuoteModal() {
           /* 폼 */
           <form onSubmit={handleSubmit} className="p-4">
 
-            {/* Row 4: 차종 */}
+            {/* 차종 */}
             <div className="mb-4">
               <label className={labelClass}>차종</label>
               <input
-                  type="text"
-                  name="desiredCar"
-                  value={formData.desiredCar}
-                  onChange={handleInputChange}
-                  placeholder="ex) 현대 디 올 뉴 팰리세이드"
-                  className={inputClass}
+                type="text"
+                name="desiredCar"
+                value={formData.desiredCar}
+                onChange={handleInputChange}
+                placeholder="ex) 현대 디 올 뉴 팰리세이드"
+                className={inputClass}
               />
             </div>
 
@@ -384,7 +384,7 @@ export default function QuoteModal() {
                   : 'bg-primary text-white hover:bg-primary-dark'
               }`}
             >
-              {isSubmitting ? '처리 중...' : '실시간 견적 받기'}
+              {isSubmitting ? '처리 중...' : '무료 견적 요청'}
             </button>
           </form>
         )}

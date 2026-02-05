@@ -25,7 +25,7 @@ export default function ReleasedCarSection() {
 
   if (isLoading) {
     return (
-      <section id="released-cars" className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <section id="released-cars" className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center text-text-muted">로딩 중...</div>
         </div>
@@ -38,7 +38,7 @@ export default function ReleasedCarSection() {
   }
 
   return (
-    <section id="released-cars" className="py-16 bg-gradient-to-b from-white to-gray-50">
+    <section id="released-cars" className="py-16 bg-white">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* 섹션 헤더 */}
         <h2 className="text-2xl font-bold text-text-primary mb-8 text-center">

@@ -69,7 +69,7 @@ const strengths = [
 
 export default function StrengthSection() {
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-100 to-gray-50">
+    <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* 섹션 헤더 */}
         <h2 className="text-2xl font-bold text-text-primary mb-2 text-center">
