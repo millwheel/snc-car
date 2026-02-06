@@ -7,7 +7,7 @@ export default function HeroSection() {
   const { openModal } = useQuoteModal();
 
   return (
-    <section className="relative text-white py-20 md:py-32 overflow-hidden">
+    <section className="relative text-white py-20 md:py-40 overflow-hidden">
       {/* 배경 이미지 */}
       <Image
         src="/images/banner.png"
