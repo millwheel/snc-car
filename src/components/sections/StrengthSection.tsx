@@ -75,7 +75,7 @@ export default function StrengthSection() {
         {/* 섹션 헤더 */}
         <FadeInUp>
           <h2 className="text-2xl font-bold text-text-primary mb-2 text-center">
-            왜 <span className="text-[#1e3a5f]">S&C</span> 신차장기렌트리스일까?
+            왜 <span className="text-[#1e3a5f]">S&C</span> 오토 홀딩스 신차장기렌트리스일까?
           </h2>
         </FadeInUp>
         <FadeInUp delay={100}>
