@@ -1,10 +1,12 @@
 ﻿# S&C 신차 장기 렌트 리스 Development Guidelines
 
-Auto-generated from all feature plans. **Last updated**: 2026-02-04
+Auto-generated from all feature plans. **Last updated**: 2026-02-06
 
 ## Active Technologies
 - TypeScript 5.x + React 18.x, Next.js 14.x (App Router), TailwindCSS (1-snc-landing)
 - Mock data (추후 Supabase 연동 대비 구조) (1-snc-landing)
+- TypeScript 5.x, React 19.x, Next.js 16.x (App Router) + `@supabase/ssr` (Supabase 클라이언트), TailwindCSS v4 (002-admin-cms)
+- Supabase Postgres (DB) + Supabase Storage (이미지, public bucket: `public-media`) (002-admin-cms)
 
 - TypeScript 5.x, React 18.x + Next.js 14.x (App Router), TailwindCSS (1-snc-landing)
 
@@ -58,6 +60,7 @@ TailwindCSS:
 - 반응형: `md:` (768px+), `lg:` (1024px+)
 
 ## Recent Changes
+- 002-admin-cms: Added TypeScript 5.x, React 19.x, Next.js 16.x (App Router) + `@supabase/ssr` (Supabase 클라이언트), TailwindCSS v4
 - 1-snc-landing: Added TypeScript 5.x + React 18.x, Next.js 14.x (App Router), TailwindCSS
 
 - 1-snc-landing: Added TypeScript + React + Next.js + TailwindCSS 기반 랜딩 페이지
