@@ -84,7 +84,7 @@ export default function ReleasedCarForm({ releasedCar, onSuccess, onCancel }: Re
             onChange={(e) => setCarName(e.target.value)}
             required
             placeholder="현대 그랜저"
-            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
           />
         </div>
         <div>
@@ -94,7 +94,7 @@ export default function ReleasedCarForm({ releasedCar, onSuccess, onCancel }: Re
             value={releasedAt}
             onChange={(e) => setReleasedAt(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
           />
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function ReleasedCarForm({ releasedCar, onSuccess, onCancel }: Re
           id="rc_is_visible"
           checked={isVisible}
           onChange={(e) => setIsVisible(e.target.checked)}
-          className="w-4 h-4 accent-accent"
+          className="w-4 h-4 accent-primary"
         />
         <label htmlFor="rc_is_visible" className="text-sm text-text-primary">노출</label>
       </div>
@@ -123,7 +123,7 @@ export default function ReleasedCarForm({ releasedCar, onSuccess, onCancel }: Re
         <button
           type="submit"
           disabled={loading}
-          className="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent-dark transition-colors disabled:opacity-50 text-sm font-medium"
+          className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 text-sm font-medium"
         >
           {loading ? '저장 중...' : isEdit ? '수정' : '등록'}
         </button>

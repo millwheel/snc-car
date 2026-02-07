@@ -7,28 +7,42 @@ const ALLOWED_IMAGE_TYPES = ['image/webp', 'image/png', 'image/jpeg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const BUCKET = process.env.SUPABASE_STORAGE_BUCKET || 'public-media';
 
-export async function GET() {
+export async function GET(request: Request) {
   const user = await getSessionUser();
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   const supabase = createClient();
 
-  const { data, error } = await supabase
+  const { searchParams } = new URL(request.url);
+  const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
+  const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '10', 10)));
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
+
+  const { data, error, count } = await supabase
     .from('sale_cars')
-    .select('*, manufacturers(name)')
-    .order('created_at', { ascending: false });
+    .select('*, manufacturers(name), users(nickname)', { count: 'exact' })
+    .order('created_at', { ascending: false })
+    .range(from, to);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  const transformed = data.map((row: Record<string, unknown>) => ({
+  const total = count ?? 0;
+  const transformed = (data ?? []).map((row: Record<string, unknown>) => ({
     ...row,
     thumbnail_path: row.thumbnail_path ? getPublicImageUrl(row.thumbnail_path as string) : null,
   }));
 
-  return NextResponse.json({ data: transformed });
+  return NextResponse.json({
+    data: transformed,
+    total,
+    page,
+    limit,
+    totalPages: Math.ceil(total / limit),
+  });
 }
 
 export async function POST(request: Request) {
@@ -117,6 +131,7 @@ export async function POST(request: Request) {
       lease_price: parsedLeasePrice,
       badges,
       is_visible: isVisible === 'true',
+      created_by: user.id,
     })
     .select()
     .single();

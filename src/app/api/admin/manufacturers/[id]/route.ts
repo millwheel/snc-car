@@ -7,6 +7,37 @@ const ALLOWED_IMAGE_TYPES = ['image/svg+xml', 'image/webp', 'image/png', 'image/
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const BUCKET = process.env.SUPABASE_STORAGE_BUCKET || 'public-media';
 
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  const supabase = createClient();
+
+  const { id } = await params;
+  const manufacturerId = parseInt(id, 10);
+
+  const { data, error } = await supabase
+    .from('manufacturers')
+    .select('*, users(nickname)')
+    .eq('manufacturer_id', manufacturerId)
+    .single();
+
+  if (error || !data) {
+    return NextResponse.json({ error: '제조사를 찾을 수 없습니다' }, { status: 404 });
+  }
+
+  const transformed = {
+    ...data,
+    logo_path: data.logo_path ? getPublicImageUrl(data.logo_path) : null,
+  };
+
+  return NextResponse.json({ data: transformed });
+}
+
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

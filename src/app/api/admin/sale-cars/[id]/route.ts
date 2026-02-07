@@ -7,6 +7,37 @@ const ALLOWED_IMAGE_TYPES = ['image/webp', 'image/png', 'image/jpeg'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const BUCKET = process.env.SUPABASE_STORAGE_BUCKET || 'public-media';
 
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const user = await getSessionUser();
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  const supabase = createClient();
+
+  const { id } = await params;
+  const saleCarId = parseInt(id, 10);
+
+  const { data, error } = await supabase
+    .from('sale_cars')
+    .select('*, manufacturers(name), users(nickname)')
+    .eq('sale_car_id', saleCarId)
+    .single();
+
+  if (error || !data) {
+    return NextResponse.json({ error: '판매차량을 찾을 수 없습니다' }, { status: 404 });
+  }
+
+  const transformed = {
+    ...data,
+    thumbnail_path: data.thumbnail_path ? getPublicImageUrl(data.thumbnail_path) : null,
+  };
+
+  return NextResponse.json({ data: transformed });
+}
+
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

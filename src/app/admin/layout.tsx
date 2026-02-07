@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AdminLayoutClient from './AdminLayoutClient';
 
 export const metadata: Metadata = {
   title: 'S&C Admin',
@@ -12,7 +13,7 @@ export default function AdminLayout({
 }) {
   return (
     <div className="min-h-screen bg-bg-secondary">
-      {children}
+      <AdminLayoutClient>{children}</AdminLayoutClient>
     </div>
   );
 }

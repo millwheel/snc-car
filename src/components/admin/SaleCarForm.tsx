@@ -122,7 +122,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
             value={manufacturerId}
             onChange={(e) => setManufacturerId(e.target.value)}
             required
-            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
           >
             <option value="">선택해주세요</option>
             {manufacturers.map((m) => (
@@ -140,7 +140,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
             onChange={(e) => setName(e.target.value)}
             required
             placeholder="아반떼 CN7"
-            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
           />
         </div>
         <div>
@@ -151,7 +151,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
             onChange={(e) => setRentPrice(e.target.value)}
             placeholder="미입력 시 비용문의"
             min={0}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
           />
         </div>
         <div>
@@ -162,7 +162,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
             onChange={(e) => setLeasePrice(e.target.value)}
             placeholder="미입력 시 비용문의"
             min={0}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
           />
         </div>
       </div>
@@ -174,7 +174,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
           placeholder="차량 설명을 입력하세요"
-          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm resize-y"
+          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm resize-y"
         />
       </div>
 
@@ -188,8 +188,8 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
               onClick={() => toggleBadge(badge)}
               className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
                 badges.includes(badge)
-                  ? 'bg-accent text-white border-accent'
-                  : 'bg-white text-text-secondary border-border hover:border-accent'
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-white text-text-secondary border-border hover:border-primary'
               }`}
             >
               {badge}
@@ -204,7 +204,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
           id="sc_is_visible"
           checked={isVisible}
           onChange={(e) => setIsVisible(e.target.checked)}
-          className="w-4 h-4 accent-accent"
+          className="w-4 h-4 accent-primary"
         />
         <label htmlFor="sc_is_visible" className="text-sm text-text-primary">노출</label>
       </div>
@@ -222,7 +222,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
         <button
           type="submit"
           disabled={loading}
-          className="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent-dark transition-colors disabled:opacity-50 text-sm font-medium"
+          className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 text-sm font-medium"
         >
           {loading ? '저장 중...' : isEdit ? '수정' : '등록'}
         </button>

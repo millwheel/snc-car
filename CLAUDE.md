@@ -9,6 +9,8 @@ Auto-generated from all feature plans. **Last updated**: 2026-02-07
 - Supabase Postgres (DB) + Supabase Storage (이미지, public bucket: `public-media`) (002-admin-cms)
 - TypeScript 5.x, React 19.x, Next.js 16.x (App Router) + `@supabase/supabase-js` (DB/Storage), `bcryptjs` (비밀번호 해싱), TailwindCSS v4 (003-custom-auth)
 - Supabase Postgres (DB) + Supabase Storage (이미지) (003-custom-auth)
+- TypeScript 5.x, React 19.x, Next.js 16.x (App Router) + `@supabase/supabase-js` ^2.95.3, `bcryptjs` ^3.0.3, TailwindCSS v4 (005-admin-refactor)
+- Supabase Postgres (DB) + Supabase Storage (`public-media` bucket) (005-admin-refactor)
 
 - TypeScript 5.x, React 18.x + Next.js 14.x (App Router), TailwindCSS (1-snc-landing)
 
@@ -62,9 +64,9 @@ TailwindCSS:
 - 반응형: `md:` (768px+), `lg:` (1024px+)
 
 ## Recent Changes
+- 005-admin-refactor: Added TypeScript 5.x, React 19.x, Next.js 16.x (App Router) + `@supabase/supabase-js` ^2.95.3, `bcryptjs` ^3.0.3, TailwindCSS v4
 - 003-custom-auth: Added TypeScript 5.x, React 19.x, Next.js 16.x (App Router) + `@supabase/supabase-js` (DB/Storage), `bcryptjs` (비밀번호 해싱), TailwindCSS v4
 - 002-admin-cms: Added TypeScript 5.x, React 19.x, Next.js 16.x (App Router) + `@supabase/ssr` (Supabase 클라이언트), TailwindCSS v4
-- 1-snc-landing: Added TypeScript 5.x + React 18.x, Next.js 14.x (App Router), TailwindCSS
 
 
 <!-- MANUAL ADDITIONS START -->
