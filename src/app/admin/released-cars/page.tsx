@@ -16,10 +16,14 @@ export default function ReleasedCarsListPage() {
     setLoading(true);
     try {
       const res = await fetch(`/api/admin/released-cars?page=${p}&limit=10`);
+      if (!res.ok) {
+        setData([]);
+        return;
+      }
       const result: PaginatedResponse<ReleasedCarWithAuthor> = await res.json();
-      setData(result.data);
-      setTotalPages(result.totalPages);
-      setPage(result.page);
+      setData(result.data ?? []);
+      setTotalPages(result.totalPages ?? 1);
+      setPage(result.page ?? 1);
     } catch {
       setData([]);
     } finally {
@@ -36,7 +40,7 @@ export default function ReleasedCarsListPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-text-primary">출고차량 관리</h1>
         <button

@@ -111,9 +111,27 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h3 className="text-lg font-bold text-text-primary">
-        {isEdit ? '판매차량 수정' : '판매차량 등록'}
-      </h3>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-bold text-text-primary">
+          {isEdit ? '판매차량 수정' : '판매차량 등록'}
+        </h3>
+        <div className="flex gap-3">
+          <button
+            type="submit"
+            disabled={loading}
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 text-sm font-medium"
+          >
+            {loading ? '저장 중...' : isEdit ? '수정' : '등록'}
+          </button>
+          <button
+            type="button"
+            onClick={onCancel}
+            className="px-6 py-2 border border-border text-text-secondary rounded-lg hover:bg-bg-secondary transition-colors text-sm"
+          >
+            취소
+          </button>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -218,22 +236,6 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
 
       {error && <p className="text-sm text-red-500">{error}</p>}
 
-      <div className="flex gap-3 pt-2">
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 text-sm font-medium"
-        >
-          {loading ? '저장 중...' : isEdit ? '수정' : '등록'}
-        </button>
-        <button
-          type="button"
-          onClick={onCancel}
-          className="px-6 py-2 border border-border text-text-secondary rounded-lg hover:bg-bg-secondary transition-colors text-sm"
-        >
-          취소
-        </button>
-      </div>
     </form>
   );
 }

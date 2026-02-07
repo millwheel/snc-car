@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const NAV_ITEMS = [
   { label: '제조사', href: '/admin/manufacturers' },
@@ -20,23 +21,23 @@ export default function AdminHeader() {
   };
 
   return (
-    <header className="bg-primary-dark text-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-        <div className="flex items-center gap-6">
-          <a href="/" className="flex-shrink-0">
-            <Image src="/images/logo.png" alt="S&C" width={80} height={32} className="brightness-0 invert" />
-          </a>
-          <nav className="flex items-center gap-1">
+    <header className="sticky top-0 z-40 bg-gradient-to-r from-white via-gray-50 to-white border-b border-border backdrop-blur-sm">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-16 sm:h-20">
+          <Link href="/" className="flex items-center">
+            <Image src="/images/logo.png" alt="S&C" width={100} height={40} className="sm:w-[120px]" />
+          </Link>
+          <nav className="flex items-center justify-center gap-1 sm:gap-3">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname.startsWith(item.href);
               return (
                 <a
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-2.5 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg transition-colors ${
                     isActive
-                      ? 'bg-white/20 text-white'
-                      : 'text-white/70 hover:text-white hover:bg-white/10'
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'text-text-secondary hover:text-primary'
                   }`}
                 >
                   {item.label}
@@ -44,13 +45,13 @@ export default function AdminHeader() {
               );
             })}
           </nav>
+          <button
+            onClick={handleLogout}
+            className="px-3 py-2 text-sm sm:text-base font-medium text-text-secondary hover:text-primary transition-colors"
+          >
+            로그아웃
+          </button>
         </div>
-        <button
-          onClick={handleLogout}
-          className="px-3 py-1.5 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
-        >
-          로그아웃
-        </button>
       </div>
     </header>
   );

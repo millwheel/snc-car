@@ -85,8 +85,9 @@ export default function ImageUpload({
               file:mr-4 file:py-2 file:px-4
               file:rounded-lg file:border-0
               file:text-sm file:font-medium
-              file:bg-accent file:text-white
-              hover:file:bg-accent-dark
+              file:bg-primary file:text-white
+              file:cursor-pointer
+              hover:file:bg-primary-dark
               cursor-pointer"
           />
           {preview && (

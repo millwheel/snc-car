@@ -20,7 +20,7 @@ export function createSessionCookie(user: { id: number; username: string }) {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax' as const,
-    path: '/admin',
+    path: '/',
     maxAge: 86400, // 24 hours
   };
 }
