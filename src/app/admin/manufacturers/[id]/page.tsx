@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { EditButton, ListButton, BackToListButton } from '@/components/admin/buttons';
 import type { ManufacturerRow } from '@/types/admin';
 
 export default function ManufacturerDetailPage() {
@@ -39,12 +40,7 @@ export default function ManufacturerDetailPage() {
     return (
       <div className="max-w-3xl mx-auto px-4 py-8 text-center">
         <p className="text-text-secondary mb-4">데이터를 찾을 수 없습니다</p>
-        <button
-          onClick={() => router.push('/admin/manufacturers')}
-          className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm"
-        >
-          목록으로 돌아가기
-        </button>
+        <BackToListButton onClick={() => router.push('/admin/manufacturers')} />
       </div>
     );
   }
@@ -55,18 +51,8 @@ export default function ManufacturerDetailPage() {
         <div className="flex justify-between items-start mb-6">
           <h1 className="text-2xl font-bold text-text-primary">{item.name}</h1>
           <div className="flex gap-2">
-            <button
-              onClick={() => router.push(`/admin/manufacturers/${id}/edit`)}
-              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm font-medium"
-            >
-              수정
-            </button>
-            <button
-              onClick={() => router.push('/admin/manufacturers')}
-              className="px-4 py-2 border border-border text-text-secondary rounded-lg hover:bg-bg-secondary transition-colors text-sm"
-            >
-              목록
-            </button>
+            <EditButton onClick={() => router.push(`/admin/manufacturers/${id}/edit`)} />
+            <ListButton onClick={() => router.push('/admin/manufacturers')} />
           </div>
         </div>
 

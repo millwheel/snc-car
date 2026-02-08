@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ImageUpload from './ImageUpload';
+import { SaveButton, CancelButton } from './buttons';
 import type { ManufacturerRow, SaleCarRow } from '@/types/admin';
 
 const BADGE_OPTIONS = ['즉시출고', '프로모션'];
@@ -121,20 +122,8 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
           {isEdit ? '판매차량 수정' : '판매차량 등록'}
         </h3>
         <div className="flex gap-3">
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 text-sm font-medium"
-          >
-            {loading ? '저장 중...' : isEdit ? '저장' : '등록'}
-          </button>
-          <button
-            type="button"
-            onClick={onCancel}
-            className="px-6 py-2 border border-border text-text-secondary rounded-lg hover:bg-bg-secondary transition-colors text-sm"
-          >
-            취소
-          </button>
+          <SaveButton loading={loading} isEdit={isEdit} />
+          <CancelButton onClick={onCancel} />
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DeleteConfirmModal from '@/components/admin/DeleteConfirmModal';
+import { EditButton, DeleteButton, ListButton, BackToListButton } from '@/components/admin/buttons';
 import type { ReleasedCarRow } from '@/types/admin';
 
 export default function ReleasedCarDetailPage() {
@@ -57,12 +58,7 @@ export default function ReleasedCarDetailPage() {
     return (
       <div className="max-w-3xl mx-auto px-4 py-8 text-center">
         <p className="text-text-secondary mb-4">데이터를 찾을 수 없습니다</p>
-        <button
-          onClick={() => router.push('/admin/released-cars')}
-          className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm"
-        >
-          목록으로 돌아가기
-        </button>
+        <BackToListButton onClick={() => router.push('/admin/released-cars')} />
       </div>
     );
   }
@@ -73,25 +69,9 @@ export default function ReleasedCarDetailPage() {
         <div className="flex justify-between items-start mb-6">
           <h1 className="text-2xl font-bold text-text-primary">{item.car_name}</h1>
           <div className="flex gap-2">
-            <button
-              onClick={() => router.push(`/admin/released-cars/${id}/edit`)}
-              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm font-medium"
-            >
-              수정
-            </button>
-            <button
-              onClick={() => setShowDeleteModal(true)}
-              disabled={deleting}
-              className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-medium disabled:opacity-50"
-            >
-              삭제
-            </button>
-            <button
-              onClick={() => router.push('/admin/released-cars')}
-              className="px-4 py-2 border border-border text-text-secondary rounded-lg hover:bg-bg-secondary transition-colors text-sm"
-            >
-              목록
-            </button>
+            <EditButton onClick={() => router.push(`/admin/released-cars/${id}/edit`)} />
+            <DeleteButton onClick={() => setShowDeleteModal(true)} disabled={deleting} />
+            <ListButton onClick={() => router.push('/admin/released-cars')} />
           </div>
         </div>
 
