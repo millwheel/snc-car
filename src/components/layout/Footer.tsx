@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[#2d3748] via-[#4a5568] to-[#1a202c] text-white py-10">
+    <footer className="bg-[#2d3748] text-white py-10">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* 회사 정보 */}
