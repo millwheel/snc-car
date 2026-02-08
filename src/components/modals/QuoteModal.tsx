@@ -176,22 +176,24 @@ export default function QuoteModal() {
       {/* 모달 컨텐츠 */}
       <div className="relative bg-white rounded-lg shadow-xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
         {/* 헤더 */}
-        <div className="flex items-center justify-between p-4 border-b border-border">
-          <h2 className="text-lg font-bold text-text-primary">빠른 견적 문의</h2>
-          <button
-            onClick={handleClose}
-            className="p-1 hover:bg-bg-secondary rounded-full transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 text-text-secondary"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <div className="">
+          <div className="flex justify-end p-2">
+            <button
+              onClick={handleClose}
+              className="p-1 hover:bg-bg-secondary rounded-full transition-colors"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 text-text-secondary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <h2 className="text-2xl font-bold text-text-primary text-center pb-4">S&C 빠른 견적 문의</h2>
         </div>
 
         {isSubmitted ? (
