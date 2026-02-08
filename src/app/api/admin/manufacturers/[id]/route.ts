@@ -22,7 +22,7 @@ export async function GET(
 
   const { data, error } = await supabase
     .from('manufacturers')
-    .select('*, users(nickname)')
+    .select('*')
     .eq('manufacturer_id', manufacturerId)
     .single();
 
@@ -66,7 +66,6 @@ export async function PUT(
   const code = formData.get('code') as string;
   const name = formData.get('name') as string;
   const category = formData.get('category') as string;
-  const sortOrder = formData.get('sort_order') as string;
   const isVisible = formData.get('is_visible') as string;
   const logo = formData.get('logo') as File | null;
 
@@ -79,10 +78,6 @@ export async function PUT(
   }
   if (!['DOMESTIC', 'IMPORT'].includes(category)) {
     return NextResponse.json({ error: 'category는 DOMESTIC 또는 IMPORT여야 합니다' }, { status: 400 });
-  }
-  const sortOrderNum = parseInt(sortOrder, 10);
-  if (isNaN(sortOrderNum) || sortOrderNum < 0) {
-    return NextResponse.json({ error: 'sort_order는 0 이상 정수여야 합니다' }, { status: 400 });
   }
 
   // Check code uniqueness (excluding current)
@@ -125,7 +120,6 @@ export async function PUT(
     code: code.trim(),
     name: name.trim(),
     category,
-    sort_order: sortOrderNum,
     is_visible: isVisible === 'true',
     updated_at: new Date().toISOString(),
   };

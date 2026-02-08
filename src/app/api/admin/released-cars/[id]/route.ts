@@ -22,7 +22,7 @@ export async function GET(
 
   const { data, error } = await supabase
     .from('released_cars')
-    .select('*, users(nickname)')
+    .select('*')
     .eq('released_car_id', releasedCarId)
     .single();
 

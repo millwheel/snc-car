@@ -3,11 +3,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Pagination from '@/components/admin/Pagination';
-import type { SaleCarWithAuthor, PaginatedResponse } from '@/types/admin';
+import type { SaleCarWithManufacturer, PaginatedResponse } from '@/types/admin';
 
 export default function SaleCarsListPage() {
   const router = useRouter();
-  const [data, setData] = useState<SaleCarWithAuthor[]>([]);
+  const [data, setData] = useState<SaleCarWithManufacturer[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ export default function SaleCarsListPage() {
         setData([]);
         return;
       }
-      const result: PaginatedResponse<SaleCarWithAuthor> = await res.json();
+      const result: PaginatedResponse<SaleCarWithManufacturer> = await res.json();
       setData(result.data ?? []);
       setTotalPages(result.totalPages ?? 1);
       setPage(result.page ?? 1);
@@ -62,7 +62,6 @@ export default function SaleCarsListPage() {
               <tr className="bg-primary-dark text-white text-sm">
                 <th className="px-4 py-3 text-left font-medium">차량명</th>
                 <th className="px-4 py-3 text-left font-medium">제조사</th>
-                <th className="px-4 py-3 text-left font-medium">작성자</th>
                 <th className="px-4 py-3 text-left font-medium">작성날짜</th>
                 <th className="px-4 py-3 text-center font-medium">노출</th>
               </tr>
@@ -77,9 +76,6 @@ export default function SaleCarsListPage() {
                   <td className="px-4 py-3 text-sm text-text-primary font-medium">{item.name}</td>
                   <td className="px-4 py-3 text-sm text-text-secondary">
                     {item.manufacturers?.name || '-'}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-text-secondary">
-                    {item.users?.nickname || '-'}
                   </td>
                   <td className="px-4 py-3 text-sm text-text-secondary">
                     {item.created_at ? new Date(item.created_at).toLocaleDateString('ko-KR') : '-'}

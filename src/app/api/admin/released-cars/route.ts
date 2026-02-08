@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
   const { data, error, count } = await supabase
     .from('released_cars')
-    .select('*, users(nickname)', { count: 'exact' })
+    .select('*', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(from, to);
 
@@ -102,7 +102,8 @@ export async function POST(request: Request) {
       thumbnail_path: thumbnailPath,
       released_at: releasedAt,
       is_visible: isVisible === 'true',
-      created_by: user.id,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     })
     .select()
     .single();

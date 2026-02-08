@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DeleteConfirmModal from '@/components/admin/DeleteConfirmModal';
-import type { ReleasedCarWithAuthor } from '@/types/admin';
+import type { ReleasedCarRow } from '@/types/admin';
 
 export default function ReleasedCarDetailPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [item, setItem] = useState<ReleasedCarWithAuthor | null>(null);
+  const [item, setItem] = useState<ReleasedCarRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -103,10 +103,6 @@ export default function ReleasedCarDetailPage() {
           <div>
             <label className="block text-sm text-text-secondary mb-1">노출여부</label>
             <p className="text-text-primary">{item.is_visible ? '노출' : '비노출'}</p>
-          </div>
-          <div>
-            <label className="block text-sm text-text-secondary mb-1">작성자</label>
-            <p className="text-text-primary">{item.users?.nickname || '-'}</p>
           </div>
           <div>
             <label className="block text-sm text-text-secondary mb-1">작성일</label>

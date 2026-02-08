@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DeleteConfirmModal from '@/components/admin/DeleteConfirmModal';
-import type { SaleCarWithAuthor } from '@/types/admin';
+import type { SaleCarWithManufacturer } from '@/types/admin';
 
 export default function SaleCarDetailPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [item, setItem] = useState<SaleCarWithAuthor | null>(null);
+  const [item, setItem] = useState<SaleCarWithManufacturer | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -130,10 +130,6 @@ export default function SaleCarDetailPage() {
                 <span className="text-text-secondary">-</span>
               )}
             </div>
-          </div>
-          <div>
-            <label className="block text-sm text-text-secondary mb-1">작성자</label>
-            <p className="text-text-primary">{item.users?.nickname || '-'}</p>
           </div>
           <div>
             <label className="block text-sm text-text-secondary mb-1">작성일</label>

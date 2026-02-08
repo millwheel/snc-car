@@ -6,7 +6,6 @@ export interface ManufacturerRow {
   category: 'DOMESTIC' | 'IMPORT';
   sort_order: number;
   is_visible: boolean;
-  created_by: number | null;
   created_at: string;
   updated_at: string;
 }
@@ -21,7 +20,6 @@ export interface SaleCarRow {
   lease_price: number | null;
   badges: string[];
   is_visible: boolean;
-  created_by: number | null;
   created_at: string;
   updated_at: string;
 }
@@ -32,7 +30,6 @@ export interface ReleasedCarRow {
   thumbnail_path: string | null;
   released_at: string;
   is_visible: boolean;
-  created_by: number | null;
   created_at: string;
   updated_at: string;
 }
@@ -45,17 +42,8 @@ export interface UserRow {
   updated_at: string;
 }
 
-export interface ManufacturerWithAuthor extends ManufacturerRow {
-  users: { nickname: string } | null;
-}
-
-export interface SaleCarWithAuthor extends SaleCarRow {
+export interface SaleCarWithManufacturer extends SaleCarRow {
   manufacturers: { name: string } | null;
-  users: { nickname: string } | null;
-}
-
-export interface ReleasedCarWithAuthor extends ReleasedCarRow {
-  users: { nickname: string } | null;
 }
 
 export interface PaginatedResponse<T> {

@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
   const { data, error, count } = await supabase
     .from('sale_cars')
-    .select('*, manufacturers(name), users(nickname)', { count: 'exact' })
+    .select('*, manufacturers(name)', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(from, to);
 
@@ -131,7 +131,8 @@ export async function POST(request: Request) {
       lease_price: parsedLeasePrice,
       badges,
       is_visible: isVisible === 'true',
-      created_by: user.id,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     })
     .select()
     .single();

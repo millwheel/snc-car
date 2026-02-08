@@ -72,6 +72,11 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
       return;
     }
 
+    if (!isEdit && !thumbnailFile) {
+      setError('썸네일 이미지를 첨부해주세요');
+      return;
+    }
+
     setLoading(true);
 
     const formData = new FormData();
@@ -224,14 +229,14 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
           onChange={(e) => setIsVisible(e.target.checked)}
           className="w-4 h-4 accent-primary"
         />
-        <label htmlFor="sc_is_visible" className="text-sm text-text-primary">노출</label>
+        <label htmlFor="sc_is_visible" className="text-sm text-text-primary">메인페이지 노출</label>
       </div>
 
       <ImageUpload
         onChange={setThumbnailFile}
         currentImageUrl={saleCar?.thumbnail_path ?? null}
         accept=".webp,.png,.jpg,.jpeg"
-        label="썸네일 이미지"
+        label="썸네일 이미지 *"
       />
 
       {error && <p className="text-sm text-red-500">{error}</p>}

@@ -69,11 +69,8 @@ export default function ManufacturerFilter({
                 : 'border-border bg-white hover:border-secondary'
             }`}
           >
-            <div className="w-12 h-8 flex items-center justify-center mb-1">
-              {/* 로고 이미지 - 플레이스홀더로 텍스트 표시 */}
-              <span className="text-xs font-bold text-text-primary">
-                {manufacturer.name.slice(0, 3)}
-              </span>
+            <div className="w-12 h-10 flex items-center justify-center mb-1">
+                {/* TODO 여기에 로고 이미지 렌더링 */}
             </div>
             <span className="text-xs text-text-secondary">{manufacturer.name}</span>
           </button>

@@ -15,7 +15,6 @@ export default function ManufacturerForm({ manufacturer, onSuccess, onCancel }: 
   const [code, setCode] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState<'DOMESTIC' | 'IMPORT'>('DOMESTIC');
-  const [sortOrder, setSortOrder] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -26,13 +25,11 @@ export default function ManufacturerForm({ manufacturer, onSuccess, onCancel }: 
       setCode(manufacturer.code);
       setName(manufacturer.name);
       setCategory(manufacturer.category);
-      setSortOrder(manufacturer.sort_order);
       setIsVisible(manufacturer.is_visible);
     } else {
       setCode('');
       setName('');
       setCategory('DOMESTIC');
-      setSortOrder(0);
       setIsVisible(true);
     }
     setLogoFile(null);
@@ -42,13 +39,18 @@ export default function ManufacturerForm({ manufacturer, onSuccess, onCancel }: 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    if (!isEdit && !logoFile) {
+      setError('로고 이미지를 첨부해주세요');
+      return;
+    }
+
     setLoading(true);
 
     const formData = new FormData();
     formData.append('code', code);
     formData.append('name', name);
     formData.append('category', category);
-    formData.append('sort_order', String(sortOrder));
     formData.append('is_visible', String(isVisible));
     if (logoFile) {
       formData.append('logo', logoFile);
@@ -101,7 +103,7 @@ export default function ManufacturerForm({ manufacturer, onSuccess, onCancel }: 
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-text-primary mb-1">코드</label>
           <input
@@ -135,16 +137,6 @@ export default function ManufacturerForm({ manufacturer, onSuccess, onCancel }: 
             <option value="IMPORT">수입</option>
           </select>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-text-primary mb-1">정렬순서</label>
-          <input
-            type="number"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(parseInt(e.target.value, 10) || 0)}
-            min={0}
-            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-          />
-        </div>
       </div>
 
       <div className="flex items-center gap-2">
@@ -155,13 +147,13 @@ export default function ManufacturerForm({ manufacturer, onSuccess, onCancel }: 
           onChange={(e) => setIsVisible(e.target.checked)}
           className="w-4 h-4 accent-primary"
         />
-        <label htmlFor="is_visible" className="text-sm text-text-primary">노출</label>
+        <label htmlFor="is_visible" className="text-sm text-text-primary">메인페이지 노출</label>
       </div>
 
       <ImageUpload
         onChange={setLogoFile}
         currentImageUrl={manufacturer?.logo_path ?? null}
-        label="로고 이미지"
+        label="로고 이미지 *"
       />
 
       {error && <p className="text-sm text-red-500">{error}</p>}

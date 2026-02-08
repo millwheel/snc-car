@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
   const { data, error, count } = await supabase
     .from('manufacturers')
-    .select('*, users(nickname)', { count: 'exact' })
+    .select('*', { count: 'exact' })
     .order('sort_order', { ascending: true })
     .range(from, to);
 
@@ -56,7 +56,6 @@ export async function POST(request: Request) {
   const code = formData.get('code') as string;
   const name = formData.get('name') as string;
   const category = formData.get('category') as string;
-  const sortOrder = formData.get('sort_order') as string;
   const isVisible = formData.get('is_visible') as string;
   const logo = formData.get('logo') as File | null;
 
@@ -70,10 +69,12 @@ export async function POST(request: Request) {
   if (!['DOMESTIC', 'IMPORT'].includes(category)) {
     return NextResponse.json({ error: 'category는 DOMESTIC 또는 IMPORT여야 합니다' }, { status: 400 });
   }
-  const sortOrderNum = parseInt(sortOrder, 10);
-  if (isNaN(sortOrderNum) || sortOrderNum < 0) {
-    return NextResponse.json({ error: 'sort_order는 0 이상 정수여야 합니다' }, { status: 400 });
-  }
+
+  // Auto-assign sort_order based on current count
+  const { count: currentCount } = await supabase
+    .from('manufacturers')
+    .select('*', { count: 'exact', head: true });
+  const sortOrderNum = (currentCount ?? 0);
 
   // Check code uniqueness
   const { data: existing } = await supabase
@@ -120,7 +121,8 @@ export async function POST(request: Request) {
       category,
       sort_order: sortOrderNum,
       is_visible: isVisible === 'true',
-      created_by: user.id,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     })
     .select()
     .single();

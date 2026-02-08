@@ -36,6 +36,12 @@ export default function ReleasedCarForm({ releasedCar, onSuccess, onCancel }: Re
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    if (!isEdit && !thumbnailFile) {
+      setError('썸네일 이미지를 첨부해주세요');
+      return;
+    }
+
     setLoading(true);
 
     const formData = new FormData();
@@ -125,14 +131,14 @@ export default function ReleasedCarForm({ releasedCar, onSuccess, onCancel }: Re
           onChange={(e) => setIsVisible(e.target.checked)}
           className="w-4 h-4 accent-primary"
         />
-        <label htmlFor="rc_is_visible" className="text-sm text-text-primary">노출</label>
+        <label htmlFor="rc_is_visible" className="text-sm text-text-primary">메인페이지 노출</label>
       </div>
 
       <ImageUpload
         onChange={setThumbnailFile}
         currentImageUrl={releasedCar?.thumbnail_path ?? null}
         accept=".webp,.png,.jpg,.jpeg"
-        label="썸네일 이미지"
+        label="썸네일 이미지 *"
       />
 
       {error && <p className="text-sm text-red-500">{error}</p>}
