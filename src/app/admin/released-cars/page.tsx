@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Pagination from '@/components/admin/Pagination';
+import { formatDate } from '@/utils/formatters';
 import type { ReleasedCarRow, PaginatedResponse } from '@/types/admin';
 
 export default function ReleasedCarsListPage() {
@@ -76,7 +77,7 @@ export default function ReleasedCarsListPage() {
                   <td className="px-4 py-3 text-sm text-text-primary font-medium">{item.car_name}</td>
                   <td className="px-4 py-3 text-sm text-text-secondary">{item.released_at}</td>
                   <td className="px-4 py-3 text-sm text-text-secondary">
-                    {item.created_at ? new Date(item.created_at).toLocaleDateString('ko-KR') : '-'}
+                    {formatDate(item.created_at)}
                   </td>
                   <td className="px-4 py-3 text-sm text-center">
                     <span className={`inline-block w-2 h-2 rounded-full ${item.is_visible ? 'bg-green-500' : 'bg-gray-300'}`} />

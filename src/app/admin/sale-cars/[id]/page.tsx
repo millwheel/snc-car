@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DeleteConfirmModal from '@/components/admin/DeleteConfirmModal';
 import { EditButton, DeleteButton, ListButton, BackToListButton } from '@/components/admin/buttons';
+import { formatDate } from '@/utils/formatters';
 import type { SaleCarWithManufacturer } from '@/types/admin';
 
 export default function SaleCarDetailPage() {
@@ -114,7 +115,7 @@ export default function SaleCarDetailPage() {
           <div>
             <label className="block text-sm text-text-secondary mb-1">작성일</label>
             <p className="text-text-primary">
-              {item.created_at ? new Date(item.created_at).toLocaleDateString('ko-KR') : '-'}
+              {formatDate(item.created_at)}
             </p>
           </div>
           {item.description && (

@@ -1,8 +1,8 @@
-/**
- * 날짜를 한국어 형식으로 포맷팅 (출고일용)
- * @param dateString - ISO 8601 날짜 문자열
- * @returns 포맷팅된 날짜 (예: "2026년 1월 출고")
- */
+export function formatDate(dateString: string | null | undefined): string {
+  if (!dateString) return '-';
+  return new Date(dateString).toLocaleDateString('ko-KR');
+}
+
 export function formatReleasedDate(dateString: string): string {
   const date = new Date(dateString);
   const year = date.getFullYear();

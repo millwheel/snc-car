@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Pagination from '@/components/admin/Pagination';
+import { formatDate } from '@/utils/formatters';
 import type { ManufacturerRow, PaginatedResponse } from '@/types/admin';
 
 export default function ManufacturersListPage() {
@@ -160,7 +161,7 @@ export default function ManufacturersListPage() {
                       className="px-4 py-3 text-sm text-text-secondary cursor-pointer"
                       onClick={() => router.push(`/admin/manufacturers/${item.manufacturer_id}`)}
                     >
-                      {item.created_at ? new Date(item.created_at).toLocaleDateString('ko-KR') : '-'}
+                      {formatDate(item.created_at)}
                     </td>
                     <td className="px-4 py-3 text-sm text-center">
                       <span className={`inline-block w-2 h-2 rounded-full ${item.is_visible ? 'bg-green-500' : 'bg-gray-300'}`} />
