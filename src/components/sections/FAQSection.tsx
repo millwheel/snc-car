@@ -2,24 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import FadeInUp from '@/components/animation/FadeInUp';
-
-const faqs = [
-  {
-    id: 1,
-    question: '장기렌트카 이용시 신용등급 및 대출한도에 영향이 있나요?',
-    answer: '장기렌트 진행시 명의는 캐피탈 또는 렌터카 업체이기 때문에 신용등급이나 대출이력에 영향이 가지 않습니다.',
-  },
-  {
-    id: 2,
-    question: '장기렌트와 리스는 최대 몇 개월까지 가능한가요?',
-    answer: '60개월까지 가능합니다.',
-  },
-  {
-    id: 3,
-    question: '리스 진행시 타인 명의로 보험 가입이 가능한가요?',
-    answer: '리스 계약자 본인 명의로만 보험가입이 가능하기 때문에 불가능합니다.',
-  },
-];
+import {faqs} from "@/data/faqs";
 
 function FAQItem({ faq, isOpen, onToggle }: { faq: typeof faqs[number]; isOpen: boolean; onToggle: () => void }) {
   const contentRef = useRef<HTMLDivElement>(null);
