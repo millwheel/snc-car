@@ -73,24 +73,28 @@ export default function ManufacturersListPage() {
       </div>
 
       <div className="bg-bg-card rounded-xl shadow-sm overflow-hidden">
-        {loading ? (
-          <div className="p-8 text-center text-text-secondary">로딩 중...</div>
-        ) : data.length === 0 ? (
-          <div className="p-8 text-center text-text-secondary">등록된 제조사가 없습니다</div>
-        ) : (
-          <table className="w-full">
-            <thead>
-              <tr className="bg-primary-dark text-white text-sm">
-                <th className="px-3 py-3 text-center font-medium w-20">정렬</th>
-                <th className="px-4 py-3 text-left font-medium">이름</th>
-                <th className="px-4 py-3 text-left font-medium">코드</th>
-                <th className="px-4 py-3 text-left font-medium">카테고리</th>
-                <th className="px-4 py-3 text-left font-medium">작성날짜</th>
-                <th className="px-4 py-3 text-center font-medium">노출</th>
+        <table className="w-full table-fixed">
+          <thead>
+            <tr className="bg-primary-dark text-white text-sm">
+              <th className="px-3 py-3 text-center font-medium w-[8%]">정렬</th>
+              <th className="px-4 py-3 text-left font-medium w-[28%]">이름</th>
+              <th className="px-4 py-3 text-left font-medium w-[20%]">코드</th>
+              <th className="px-4 py-3 text-left font-medium w-[16%]">카테고리</th>
+              <th className="px-4 py-3 text-left font-medium w-[20%]">작성날짜</th>
+              <th className="px-4 py-3 text-center font-medium w-[8%]">노출</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan={6} className="p-8 text-center text-text-secondary">로딩 중...</td>
               </tr>
-            </thead>
-            <tbody>
-              {data.map((item, index) => {
+            ) : data.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="p-8 text-center text-text-secondary">등록된 제조사가 없습니다</td>
+              </tr>
+            ) : (
+              data.map((item, index) => {
                 const isFirst = page === 1 && index === 0;
                 const isLast = page === totalPages && index === data.length - 1;
 
@@ -168,10 +172,10 @@ export default function ManufacturersListPage() {
                     </td>
                   </tr>
                 );
-              })}
-            </tbody>
-          </table>
-        )}
+              })
+            )}
+          </tbody>
+        </table>
       </div>
 
       {!loading && data.length > 0 && (

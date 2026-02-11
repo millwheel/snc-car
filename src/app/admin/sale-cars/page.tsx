@@ -53,30 +53,40 @@ export default function SaleCarsListPage() {
       </div>
 
       <div className="bg-bg-card rounded-xl shadow-sm overflow-hidden">
-        {loading ? (
-          <div className="p-8 text-center text-text-secondary">로딩 중...</div>
-        ) : data.length === 0 ? (
-          <div className="p-8 text-center text-text-secondary">등록된 판매차량이 없습니다</div>
-        ) : (
-          <table className="w-full">
-            <thead>
-              <tr className="bg-primary-dark text-white text-sm">
-                <th className="px-4 py-3 text-left font-medium">차량명</th>
-                <th className="px-4 py-3 text-left font-medium">제조사</th>
-                <th className="px-4 py-3 text-left font-medium">작성날짜</th>
-                <th className="px-4 py-3 text-center font-medium">노출</th>
+        <table className="w-full table-fixed">
+          <thead>
+            <tr className="bg-primary-dark text-white text-sm">
+              <th className="px-4 py-3 text-left font-medium w-[18%]">차량명</th>
+              <th className="px-4 py-3 text-left font-medium w-[30%]">설명</th>
+              <th className="px-4 py-3 text-left font-medium w-[14%]">제조사</th>
+              <th className="px-4 py-3 text-center font-medium w-[10%]">즉시출고</th>
+              <th className="px-4 py-3 text-left font-medium w-[18%]">작성날짜</th>
+              <th className="px-4 py-3 text-center font-medium w-[10%]">노출</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan={6} className="p-8 text-center text-text-secondary">로딩 중...</td>
               </tr>
-            </thead>
-            <tbody>
-              {data.map((item) => (
+            ) : data.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="p-8 text-center text-text-secondary">등록된 판매차량이 없습니다</td>
+              </tr>
+            ) : (
+              data.map((item) => (
                 <tr
                   key={item.sale_car_id}
                   onClick={() => router.push(`/admin/sale-cars/${item.sale_car_id}`)}
                   className="border-t border-border hover:bg-bg-secondary cursor-pointer transition-colors"
                 >
                   <td className="px-4 py-3 text-sm text-text-primary font-medium">{item.name}</td>
+                  <td className="px-4 py-3 text-sm text-text-secondary truncate">{item.description || '-'}</td>
                   <td className="px-4 py-3 text-sm text-text-secondary">
                     {item.manufacturers?.name || '-'}
+                  </td>
+                  <td className="px-4 py-3 text-sm text-center">
+                    {item.immediate ? <span className="text-badge-immediate font-medium">해당</span> : '-'}
                   </td>
                   <td className="px-4 py-3 text-sm text-text-secondary">
                     {formatDate(item.created_at)}
@@ -85,10 +95,10 @@ export default function SaleCarsListPage() {
                     <span className={`inline-block w-2 h-2 rounded-full ${item.is_visible ? 'bg-green-500' : 'bg-gray-300'}`} />
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
 
       {!loading && data.length > 0 && (
