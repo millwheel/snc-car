@@ -11,8 +11,11 @@ export default function Home() {
       {/* 히어로 섹션 */}
       <HeroSection />
 
-      {/* 판매 차량 섹션 */}
-      <SaleCarSection />
+      {/* 장기렌트 (국산차) 섹션 */}
+      <SaleCarSection sectionId="rent-cars" title="장기렌트" category="DOMESTIC" />
+
+      {/* 리스 (수입차) 섹션 */}
+      <SaleCarSection sectionId="lease-cars" title="리스" category="IMPORT" />
 
       {/* S&C 강점 섹션 */}
       <StrengthSection />
@@ -23,7 +26,7 @@ export default function Home() {
       {/* FAQ 섹션 */}
       <FAQSection />
 
-      {/* CMAR 섹션 */}
+      {/* 브랜드 소개 섹션 */}
       <BrandSection />
     </main>
   );

@@ -37,20 +37,19 @@ export default function Header() {
           {/* 네비게이션 */}
           <nav className="hidden md:flex items-center gap-3">
             <button
-              onClick={() => scrollToSection('sale-cars')}
+              onClick={() => scrollToSection('rent-cars')}
               className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
             >
               장기렌트
             </button>
             <button
-              onClick={() => scrollToSection('sale-cars')}
+              onClick={() => scrollToSection('lease-cars')}
               className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
             >
               리스
             </button>
             <button
-              onClick={() => scrollToSection('sale-cars')}
-              className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
+              className="px-3 py-2 text-base font-semibold text-text-secondary cursor-default"
             >
               2월 즉시출고
             </button>
