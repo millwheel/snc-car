@@ -51,7 +51,7 @@ export default function Header() {
             <button
               className="px-3 py-2 text-base font-semibold text-text-secondary cursor-default"
             >
-              2월 즉시출고
+              {new Date().getMonth() + 1}월 즉시출고
             </button>
             <button
               onClick={() => scrollToSection('released-cars')}
