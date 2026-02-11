@@ -58,7 +58,6 @@ export default function SaleCarSection() {
         {/* 섹션 헤더 */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <h2 className="text-2xl font-bold text-text-primary">판매 차량</h2>
-          <SearchInput />
         </div>
 
         {/* 1차 필터: 카테고리 탭 */}

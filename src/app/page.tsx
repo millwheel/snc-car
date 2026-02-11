@@ -3,6 +3,7 @@ import SaleCarSection from '@/components/sections/SaleCarSection';
 import StrengthSection from '@/components/sections/StrengthSection';
 import ReleasedCarSection from '@/components/sections/ReleasedCarSection';
 import FAQSection from '@/components/sections/FAQSection';
+import BrandSection from '@/components/sections/BrandSection';
 
 export default function Home() {
   return (
@@ -21,6 +22,9 @@ export default function Home() {
 
       {/* FAQ 섹션 */}
       <FAQSection />
+
+      {/* CMAR 섹션 */}
+      <BrandSection />
     </main>
   );
 }

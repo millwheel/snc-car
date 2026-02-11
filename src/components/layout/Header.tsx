@@ -35,12 +35,24 @@ export default function Header() {
           </button>
 
           {/* 네비게이션 */}
-          <nav className="hidden md:flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-3">
             <button
               onClick={() => scrollToSection('sale-cars')}
               className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
             >
-              판매 차량
+              장기렌트
+            </button>
+            <button
+              onClick={() => scrollToSection('sale-cars')}
+              className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
+            >
+              리스
+            </button>
+            <button
+              onClick={() => scrollToSection('sale-cars')}
+              className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
+            >
+              2월 즉시출고
             </button>
             <button
               onClick={() => scrollToSection('released-cars')}
@@ -52,7 +64,7 @@ export default function Header() {
               onClick={() => openModal()}
               className="px-4 py-2 text-base font-semibold bg-primary text-white rounded-lg hover:bg-primary transition-all shadow-md"
             >
-              빠른 상담
+              무심사 신청
             </button>
             <a
               href="tel:1533-7117"
