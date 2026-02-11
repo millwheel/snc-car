@@ -5,8 +5,6 @@ import ImageUpload from './ImageUpload';
 import { SaveButton, CancelButton } from './buttons';
 import type { ManufacturerRow, SaleCarRow } from '@/types/admin';
 
-const BADGE_OPTIONS = ['즉시출고', '프로모션'];
-
 interface SaleCarFormProps {
   saleCar?: SaleCarRow | null;
   onSuccess: () => void;
@@ -21,7 +19,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
   const [description, setDescription] = useState('');
   const [rentPrice, setRentPrice] = useState('');
   const [leasePrice, setLeasePrice] = useState('');
-  const [badges, setBadges] = useState<string[]>([]);
+  const [immediate, setImmediate] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -43,7 +41,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
       setDescription(saleCar.description || '');
       setRentPrice(saleCar.rent_price !== null ? String(saleCar.rent_price) : '');
       setLeasePrice(saleCar.lease_price !== null ? String(saleCar.lease_price) : '');
-      setBadges(saleCar.badges || []);
+      setImmediate(saleCar.immediate ?? false);
       setIsVisible(saleCar.is_visible);
     } else {
       setManufacturerId('');
@@ -51,18 +49,12 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
       setDescription('');
       setRentPrice('');
       setLeasePrice('');
-      setBadges([]);
+      setImmediate(false);
       setIsVisible(true);
     }
     setThumbnailFile(null);
     setError(null);
   }, [saleCar]);
-
-  const toggleBadge = (badge: string) => {
-    setBadges((prev) =>
-      prev.includes(badge) ? prev.filter((b) => b !== badge) : [...prev, badge]
-    );
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,7 +78,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
     formData.append('description', description);
     formData.append('rent_price', rentPrice);
     formData.append('lease_price', leasePrice);
-    formData.append('badges', JSON.stringify(badges));
+    formData.append('immediate', String(immediate));
     formData.append('is_visible', String(isVisible));
     if (thumbnailFile) {
       formData.append('thumbnail', thumbnailFile);
@@ -190,27 +182,18 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
         />
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-text-primary mb-1">배지</label>
-        <div className="flex gap-2">
-          {BADGE_OPTIONS.map((badge) => (
-            <button
-              key={badge}
-              type="button"
-              onClick={() => toggleBadge(badge)}
-              className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
-                badges.includes(badge)
-                  ? 'bg-primary text-white border-primary'
-                  : 'bg-white text-text-secondary border-border hover:border-primary'
-              }`}
-            >
-              {badge}
-            </button>
-          ))}
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="sc_immediate"
+            checked={immediate}
+            onChange={(e) => setImmediate(e.target.checked)}
+            className="w-4 h-4 accent-primary"
+          />
+          <label htmlFor="sc_immediate" className="text-sm text-text-primary">즉시출고</label>
         </div>
-      </div>
-
-      <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
         <input
           type="checkbox"
           id="sc_is_visible"
@@ -219,6 +202,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
           className="w-4 h-4 accent-primary"
         />
         <label htmlFor="sc_is_visible" className="text-sm text-text-primary">메인페이지 노출</label>
+        </div>
       </div>
 
       <ImageUpload

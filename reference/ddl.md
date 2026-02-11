@@ -30,7 +30,7 @@ create table if not exists sale_cars (
   rent_price integer null,
   lease_price integer null,
 
-  badges text[] not null default '{}'::text[],
+  immediate boolean not null default false,
 
   is_visible boolean not null default true,
 

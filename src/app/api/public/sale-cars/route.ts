@@ -7,7 +7,7 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from('sale_cars')
-    .select('sale_car_id, manufacturer_id, name, description, thumbnail_path, rent_price, lease_price, badges, manufacturers!inner(manufacturer_id, name, category, is_visible)')
+    .select('sale_car_id, manufacturer_id, name, description, thumbnail_path, rent_price, lease_price, immediate, manufacturers!inner(manufacturer_id, name, category, is_visible)')
     .eq('is_visible', true)
     .eq('manufacturers.is_visible', true);
 
@@ -25,7 +25,7 @@ export async function GET() {
       thumbnail_url: row.thumbnail_path ? getPublicImageUrl(row.thumbnail_path) : null,
       rent_price: row.rent_price,
       lease_price: row.lease_price,
-      badges: row.badges ?? [],
+      immediate: row.immediate ?? false,
       manufacturer: mf ? { manufacturer_id: mf.manufacturer_id, name: mf.name, category: mf.category } : null,
     };
   });

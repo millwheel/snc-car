@@ -58,7 +58,7 @@ export async function POST(request: Request) {
   const description = formData.get('description') as string;
   const rentPrice = formData.get('rent_price') as string;
   const leasePrice = formData.get('lease_price') as string;
-  const badgesRaw = formData.get('badges') as string;
+  const immediate = formData.get('immediate') as string;
   const isVisible = formData.get('is_visible') as string;
   const thumbnail = formData.get('thumbnail') as File | null;
 
@@ -79,16 +79,6 @@ export async function POST(request: Request) {
 
   if (!mfr) {
     return NextResponse.json({ error: '존재하지 않는 제조사입니다' }, { status: 400 });
-  }
-
-  // Parse badges
-  let badges: string[] = [];
-  if (badgesRaw) {
-    try {
-      badges = JSON.parse(badgesRaw);
-    } catch {
-      badges = [];
-    }
   }
 
   // Parse prices
@@ -129,7 +119,7 @@ export async function POST(request: Request) {
       thumbnail_path: thumbnailPath,
       rent_price: parsedRentPrice,
       lease_price: parsedLeasePrice,
-      badges,
+      immediate: immediate === 'true',
       is_visible: isVisible === 'true',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),

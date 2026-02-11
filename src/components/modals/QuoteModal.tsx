@@ -30,7 +30,7 @@ function parseInitialFund(value: string): { type: InitialFundType; rate: Initial
 }
 
 const inputClass = 'w-full px-3 py-2.5 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary';
-const inputErrorClass = 'w-full px-3 py-2.5 border border-badge-immediate rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary';
+const inputErrorClass = 'w-full px-3 py-2.5 border border-error rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary';
 const labelClass = 'block text-sm text-text-secondary mb-1';
 
 export default function QuoteModal() {
@@ -199,10 +199,10 @@ export default function QuoteModal() {
         {isSubmitted ? (
           /* 제출 완료 화면 */
           <div className="p-8 text-center">
-            <div className="w-16 h-16 bg-badge-promotion/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-8 h-8 text-badge-promotion"
+                className="w-8 h-8 text-success"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -252,7 +252,7 @@ export default function QuoteModal() {
                   className={errors.name ? inputErrorClass : inputClass}
                 />
                 {errors.name && (
-                  <p className="text-xs text-badge-immediate mt-1">{errors.name}</p>
+                  <p className="text-xs text-error mt-1">{errors.name}</p>
                 )}
               </div>
               <div>
@@ -266,7 +266,7 @@ export default function QuoteModal() {
                   className={errors.phone ? inputErrorClass : inputClass}
                 />
                 {errors.phone && (
-                  <p className="text-xs text-badge-immediate mt-1">{errors.phone}</p>
+                  <p className="text-xs text-error mt-1">{errors.phone}</p>
                 )}
               </div>
             </div>
@@ -284,7 +284,7 @@ export default function QuoteModal() {
                   className={errors.region ? inputErrorClass : inputClass}
                 />
                 {errors.region && (
-                  <p className="text-xs text-badge-immediate mt-1">{errors.region}</p>
+                  <p className="text-xs text-error mt-1">{errors.region}</p>
                 )}
               </div>
               <div>
@@ -367,13 +367,13 @@ export default function QuoteModal() {
                 </span>
               </label>
               {errors.privacyAgreed && (
-                <p className="text-xs text-badge-immediate mt-1">{errors.privacyAgreed}</p>
+                <p className="text-xs text-error mt-1">{errors.privacyAgreed}</p>
               )}
             </div>
 
             {/* 에러 메시지 */}
             {errors.submit && (
-              <p className="text-sm text-badge-immediate mb-4 text-center">{errors.submit}</p>
+              <p className="text-sm text-error mb-4 text-center">{errors.submit}</p>
             )}
 
             {/* 제출 버튼 */}

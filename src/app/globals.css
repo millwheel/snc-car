@@ -48,7 +48,10 @@
 
   /* Badges */
   --color-badge-immediate: #e53e3e;
-  --color-badge-promotion: #38a169;
+
+  /* Semantic Colors */
+  --color-error: #e53e3e;
+  --color-success: #38a169;
 }
 
 body {

@@ -99,18 +99,8 @@ export default function SaleCarDetailPage() {
             <p className="text-text-primary">{formatPrice(item.lease_price)}</p>
           </div>
           <div>
-            <label className="block text-sm text-text-secondary mb-1">배지</label>
-            <div className="flex gap-1">
-              {item.badges && item.badges.length > 0 ? (
-                item.badges.map((badge) => (
-                  <span key={badge} className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded">
-                    {badge}
-                  </span>
-                ))
-              ) : (
-                <span className="text-text-secondary">-</span>
-              )}
-            </div>
+            <label className="block text-sm text-text-secondary mb-1">즉시출고</label>
+            <p className="text-text-primary">{item.immediate ? '즉시출고' : '-'}</p>
           </div>
           <div>
             <label className="block text-sm text-text-secondary mb-1">작성일</label>

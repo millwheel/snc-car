@@ -1,21 +1,10 @@
 'use client';
 
-import { SaleCarBadge, type SaleCar } from '@/types/saleCar';
+import type { SaleCar } from '@/types/saleCar';
 import { useQuoteModal } from '@/hooks/useQuoteModal';
 
 interface SaleCarCardProps {
   car: SaleCar;
-}
-
-function getBadgeColor(badge: string): string {
-  switch (badge) {
-    case SaleCarBadge.IMMEDIATE:
-      return 'bg-badge-immediate';
-    case SaleCarBadge.PROMOTION:
-      return 'bg-badge-promotion';
-    default:
-      return 'bg-secondary';
-  }
 }
 
 export default function SaleCarCard({ car }: SaleCarCardProps) {
@@ -44,17 +33,12 @@ export default function SaleCarCard({ car }: SaleCarCardProps) {
           ) : null}
         </div>
 
-        {/* 뱃지 */}
-        {car.badges.length > 0 && (
-          <div className="absolute top-2 left-2 flex gap-1">
-            {car.badges.map((badge) => (
-              <span
-                key={badge}
-                className={`px-2 py-1 text-xs text-white rounded ${getBadgeColor(badge)}`}
-              >
-                {badge}
-              </span>
-            ))}
+        {/* 즉시출고 뱃지 */}
+        {car.immediate && (
+          <div className="absolute top-2 left-2">
+            <span className="px-2 py-1 text-xs text-white rounded bg-badge-immediate">
+              즉시출고
+            </span>
           </div>
         )}
       </div>

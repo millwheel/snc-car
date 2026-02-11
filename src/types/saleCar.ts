@@ -1,8 +1,3 @@
-export enum SaleCarBadge {
-  IMMEDIATE = '즉시출고',
-  PROMOTION = '프로모션',
-}
-
 export interface SaleCarManufacturer {
   manufacturer_id: number;
   name: string;
@@ -17,6 +12,6 @@ export interface SaleCar {
   thumbnail_url: string | null;
   rent_price: number | null;
   lease_price: number | null;
-  badges: string[];
+  immediate: boolean;
   manufacturer: SaleCarManufacturer | null;
 }

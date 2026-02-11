@@ -57,7 +57,7 @@ npm run test      # Jest 테스트 실행
 TypeScript + React:
 - 컴포넌트는 함수형 컴포넌트 사용
 - Props 타입은 interface로 정의
-- enum은 대문자 snake_case 값 사용 (SaleCarBadge)
+- enum은 대문자 snake_case 값 사용
 - 파일명: PascalCase (컴포넌트), camelCase (유틸, 훅)
 
 TailwindCSS:

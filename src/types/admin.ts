@@ -18,7 +18,7 @@ export interface SaleCarRow {
   thumbnail_path: string | null;
   rent_price: number | null;
   lease_price: number | null;
-  badges: string[];
+  immediate: boolean;
   is_visible: boolean;
   created_at: string;
   updated_at: string;

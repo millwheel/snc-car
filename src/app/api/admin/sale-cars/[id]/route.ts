@@ -67,7 +67,7 @@ export async function PUT(
   const description = formData.get('description') as string;
   const rentPrice = formData.get('rent_price') as string;
   const leasePrice = formData.get('lease_price') as string;
-  const badgesRaw = formData.get('badges') as string;
+  const immediate = formData.get('immediate') as string;
   const isVisible = formData.get('is_visible') as string;
   const thumbnail = formData.get('thumbnail') as File | null;
 
@@ -76,11 +76,6 @@ export async function PUT(
   }
   if (!name || !name.trim()) {
     return NextResponse.json({ error: '차량명은 필수입니다' }, { status: 400 });
-  }
-
-  let badges: string[] = [];
-  if (badgesRaw) {
-    try { badges = JSON.parse(badgesRaw); } catch { badges = []; }
   }
 
   const parsedRentPrice = rentPrice && rentPrice.trim() !== '' ? parseInt(rentPrice, 10) : null;
@@ -114,7 +109,7 @@ export async function PUT(
     description: description?.trim() || null,
     rent_price: parsedRentPrice,
     lease_price: parsedLeasePrice,
-    badges,
+    immediate: immediate === 'true',
     is_visible: isVisible === 'true',
     updated_at: new Date().toISOString(),
   };
