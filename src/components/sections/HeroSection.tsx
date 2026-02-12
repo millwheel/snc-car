@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect, useCallback } from 'react';
 import { useQuoteModal } from '@/hooks/useQuoteModal';
 
@@ -36,11 +37,14 @@ const banners = [
           국산차부터 수입차까지 다양한 차량을 만나보세요
         </>
     ),
+    ctaLabel: '차량 반납 상담',
+    ctaLink: '/disposal',
   },
 ];
 
 export default function HeroSection() {
   const { openModal } = useQuoteModal();
+  const router = useRouter();
   const [current, setCurrent] = useState(0);
 
   const next = useCallback(() => {
@@ -84,13 +88,13 @@ export default function HeroSection() {
 
               {/* CTA 버튼 */}
               <button
-                onClick={() => openModal()}
+                onClick={() => banner.ctaLink ? router.push(banner.ctaLink) : openModal()}
                 className="relative overflow-hidden px-8 py-4 bg-white text-primary-dark font-bold rounded-lg text-lg shadow-lg border border-white/50 hover:bg-primary hover:text-white hover:border-primary before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent hover:before:translate-x-full before:transition-transform before:duration-700 before:ease-in-out"
                 style={{
                   transition: 'background-color 0.4s ease 0.25s, color 0.4s ease 0.25s, border-color 0.4s ease 0.25s',
                 }}
               >
-                무료 견적 받기
+                {banner.ctaLabel ?? '무료 견적 받기'}
               </button>
 
               {/* 서브 정보 */}

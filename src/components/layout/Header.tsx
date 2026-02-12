@@ -1,19 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useQuoteModal } from '@/hooks/useQuoteModal';
 import { PHONE_NUMBER, PHONE_TEL_LINK } from '@/data/contact';
-
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-};
-
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
 
 export default function Header() {
   const { openModal } = useQuoteModal();
@@ -23,8 +13,8 @@ export default function Header() {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex items-center justify-between h-20">
           {/* 로고 */}
-          <button
-            onClick={scrollToTop}
+          <Link
+            href="/"
             className="flex items-center gap-2"
           >
             <Image
@@ -33,34 +23,40 @@ export default function Header() {
               width={140}
               height={50}
             />
-          </button>
+          </Link>
 
           {/* 네비게이션 */}
           <nav className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => scrollToSection('rent-cars')}
+            <Link
+              href="/#rent-cars"
               className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
             >
               장기렌트
-            </button>
-            <button
-              onClick={() => scrollToSection('lease-cars')}
+            </Link>
+            <Link
+              href="/#lease-cars"
               className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
             >
               리스
-            </button>
-            <button
-              className="px-3 py-2 text-base font-semibold text-text-secondary cursor-default"
-               onClick={() => scrollToSection('immediate-cars')}
+            </Link>
+            <Link
+              href="/#immediate-cars"
+              className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
             >
               {new Date().getMonth() + 1}월 즉시출고
-            </button>
-            <button
-              onClick={() => scrollToSection('released-cars')}
+            </Link>
+            <Link
+              href="/#released-cars"
               className="px-3 py-2 text-base font-semibold text-text-secondary hover:text-primary transition-colors"
             >
               출고 내역
-            </button>
+            </Link>
+            <Link
+              href="/disposal"
+              className="px-4 py-2 text-base font-semibold bg-primary text-white rounded-lg hover:bg-primary transition-all shadow-md"
+            >
+              차량반납 상담
+            </Link>
             <button
               onClick={() => openModal()}
               className="px-4 py-2 text-base font-semibold bg-primary text-white rounded-lg hover:bg-primary transition-all shadow-md"
