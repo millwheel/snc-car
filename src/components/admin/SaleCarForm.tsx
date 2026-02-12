@@ -178,7 +178,7 @@ export default function SaleCarForm({ saleCar, onSuccess, onCancel }: SaleCarFor
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
           placeholder="차량 상세 스펙을 입력하세요"
-          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm resize-y"
+          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm resize-none"
         />
       </div>
 

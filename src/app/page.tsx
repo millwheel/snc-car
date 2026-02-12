@@ -17,6 +17,9 @@ export default function Home() {
       {/* 리스 (수입차) 섹션 */}
       <SaleCarSection sectionId="lease-cars" title="리스" category="IMPORT" />
 
+      {/* 즉시출고 섹션 */}
+      <SaleCarSection sectionId="immediate-cars" title="즉시출고" immediateOnly />
+
       {/* S&C 강점 섹션 */}
       <StrengthSection />
 

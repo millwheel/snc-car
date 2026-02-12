@@ -9,10 +9,11 @@ import type { SaleCar } from '@/types/saleCar';
 interface SaleCarSectionProps {
   sectionId: string;
   title: string;
-  category: ManufacturerCategory;
+  category?: ManufacturerCategory;
+  immediateOnly?: boolean;
 }
 
-export default function SaleCarSection({ sectionId, title, category }: SaleCarSectionProps) {
+export default function SaleCarSection({ sectionId, title, category, immediateOnly }: SaleCarSectionProps) {
   const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [cars, setCars] = useState<SaleCar[]>([]);
   const [selectedManufacturer, setSelectedManufacturer] = useState<number | null>(null);
@@ -31,11 +32,18 @@ export default function SaleCarSection({ sectionId, title, category }: SaleCarSe
         const allCars: SaleCar[] = carsJson.data ?? [];
 
         // 카테고리에 해당하는 제조사만 필터링
-        const filteredMfs = allManufacturers.filter((m) => m.category === category);
+        const filteredMfs = category
+          ? allManufacturers.filter((m) => m.category === category)
+          : allManufacturers;
         const validIds = filteredMfs.map((m) => m.manufacturer_id);
 
         setManufacturers(filteredMfs);
-        setCars(allCars.filter((car) => validIds.includes(car.manufacturer_id)));
+
+        let filteredCars = allCars.filter((car) => validIds.includes(car.manufacturer_id));
+        if (immediateOnly) {
+          filteredCars = filteredCars.filter((car) => car.immediate === true);
+        }
+        setCars(filteredCars);
       } catch (error) {
         console.error('Failed to load data:', error);
       } finally {
@@ -43,7 +51,7 @@ export default function SaleCarSection({ sectionId, title, category }: SaleCarSe
       }
     }
     loadData();
-  }, [category]);
+  }, [category, immediateOnly]);
 
   const handleManufacturerSelect = (id: number | null) => {
     setSelectedManufacturer((prev) => (prev === id ? null : id));
