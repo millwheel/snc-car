@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { label: '제조사', href: '/admin/manufacturers' },
   { label: '판매차량', href: '/admin/sale-cars' },
   { label: '출고차량', href: '/admin/released-cars' },
+  { label: '사용자', href: '/admin/users' },
 ];
 
 export default function AdminHeader() {
