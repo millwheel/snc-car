@@ -27,7 +27,7 @@ export async function DELETE(
     .select('*', { count: 'exact', head: true });
 
   if ((count ?? 0) <= 1) {
-    return NextResponse.json({ error: '최소 1명의 사용자가 필요합니다' }, { status: 400 });
+    return NextResponse.json({ error: '최소 1명의 관리자가 필요합니다' }, { status: 400 });
   }
 
   // Check target exists

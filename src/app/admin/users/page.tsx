@@ -12,7 +12,7 @@ interface UsersResponse extends PaginatedResponse<UserRow> {
   currentUserId: number;
 }
 
-export default function UsersListPage() {
+export default function AdminsListPage() {
   const [data, setData] = useState<UserRow[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -78,12 +78,12 @@ export default function UsersListPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-text-primary">사용자 관리</h1>
+        <h1 className="text-2xl font-bold text-text-primary">관리자 관리</h1>
         <button
           onClick={() => setShowAddModal(true)}
           className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm font-medium"
         >
-          + 사용자 추가
+          + 관리자 추가
         </button>
       </div>
 
