@@ -2,7 +2,7 @@ import { PHONE_NUMBER } from '@/data/contact';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2d3748] text-white py-10">
+    <footer className="bg-primary-dark text-white py-10">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center">
           <h3 className="text-lg font-bold mb-4">S&C 신차장기렌트리스</h3>

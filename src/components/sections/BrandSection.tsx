@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import FadeInUp from '../animation/FadeInUp';
 
 export default function BrandSection() {
   return (
@@ -6,6 +7,7 @@ export default function BrandSection() {
       <div className="container mx-auto px-4 max-w-6xl">
         {/* 모바일: 세로 배치, 텍스트 먼저 → 이미지 */}
         {/* 데스크톱: 가로 배치, 이미지 왼쪽 → 텍스트 오른쪽 */}
+        <FadeInUp delay={100}>
         <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-16">
           {/* 이미지 */}
           <div className="w-full md:w-5/12 flex-shrink-0">
@@ -49,6 +51,7 @@ export default function BrandSection() {
             </div>
           </div>
         </div>
+        </FadeInUp>
       </div>
     </section>
   );
