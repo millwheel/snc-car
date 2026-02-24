@@ -6,8 +6,8 @@ interface StrengthCardProps {
 
 export default function StrengthCard({ icon, title, description }: StrengthCardProps) {
   return (
-    <div className="bg-primary border border-primary-light rounded-xl p-6 text-center hover:shadow-xl hover:border-accent-light transition-all duration-300">
-      <div className="w-16 h-16 bg-primary-dark rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner">
+    <div className="bg-primary border border-primary-light rounded-xl p-6 text-center hover:shadow-xl hover:border-secondary transition-all duration-300">
+      <div className="w-16 h-16 bg-primary-dark rounded-full flex items-center justify-center mx-auto mb-4">
         {icon}
       </div>
       <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
