@@ -2,6 +2,7 @@ export interface SaleCarManufacturer {
   manufacturer_id: number;
   name: string;
   category: 'DOMESTIC' | 'IMPORT';
+  logo_url: string | null;
 }
 
 export interface SaleCar {
