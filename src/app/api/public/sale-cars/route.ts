@@ -7,7 +7,7 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from('sale_cars')
-    .select('sale_car_id, manufacturer_id, name, thumbnail_path, rent_price, lease_price, manufacturers!inner(manufacturer_id, name, category, logo_path, is_visible)')
+    .select('sale_car_id, manufacturer_id, name, thumbnail_path, rent_price, lease_price, immediate, manufacturers!inner(manufacturer_id, name, category, logo_path, is_visible)')
     .eq('manufacturers.is_visible', true)
     .order('sort_order', { ascending: true });
 
@@ -24,6 +24,7 @@ export async function GET() {
       thumbnail_url: getPublicImageUrl(row.thumbnail_path),
       rent_price: row.rent_price,
       lease_price: row.lease_price,
+      immediate: row.immediate,
       manufacturer: mf ? { manufacturer_id: mf.manufacturer_id, name: mf.name, category: mf.category, logo_url: mf.logo_path ? getPublicImageUrl(mf.logo_path) : null } : null,
     };
   });
