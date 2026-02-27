@@ -48,11 +48,6 @@ export default function SaleCarCard({ car }: SaleCarCardProps) {
         {/* 차량명 */}
         <h3 className="text-lg font-bold text-text-primary mb-1">{car.name}</h3>
 
-        {/* 차량 설명 */}
-        {car.description && (
-          <p className="text-xs text-text-secondary mb-3 line-clamp-2">{car.description}</p>
-        )}
-
         {/* 가격 정보 */}
         <div className="space-y-1 mb-4">
           <p className="text-sm">

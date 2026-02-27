@@ -8,7 +8,6 @@ export interface SaleCar {
   sale_car_id: number;
   manufacturer_id: number;
   name: string;
-  description: string | null;
   thumbnail_url: string | null;
   rent_price: number | null;
   lease_price: number | null;
