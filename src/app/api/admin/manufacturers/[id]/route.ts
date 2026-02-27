@@ -106,12 +106,13 @@ export async function PUT(
     }
 
     const ext = logo.name.split('.').pop() || 'png';
-    newLogoPath = `manufacturers/${manufacturerId}/logo.${ext}`;
+    const uuid = crypto.randomUUID();
+    newLogoPath = `manufacturers/${uuid}/logo.${ext}`;
 
     const arrayBuffer = await logo.arrayBuffer();
     const { error: uploadError } = await supabase.storage
       .from(BUCKET)
-      .upload(newLogoPath, arrayBuffer, { contentType: logo.type, upsert: true });
+      .upload(newLogoPath, arrayBuffer, { contentType: logo.type, upsert: false });
 
     if (uploadError) {
       return NextResponse.json({ error: '이미지 업로드 실패: ' + uploadError.message }, { status: 500 });
@@ -144,6 +145,11 @@ export async function PUT(
       await supabase.storage.from(BUCKET).remove([newLogoPath]);
     }
     return NextResponse.json({ error: 'DB 수정 실패: ' + dbError.message }, { status: 500 });
+  }
+
+  // Delete old image from storage if a new one was uploaded and paths differ
+  if (newLogoPath && existing.logo_path && existing.logo_path !== newLogoPath) {
+    await supabase.storage.from(BUCKET).remove([existing.logo_path]);
   }
 
   const transformed = {

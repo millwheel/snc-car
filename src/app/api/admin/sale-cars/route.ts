@@ -23,7 +23,7 @@ export async function GET(request: Request) {
   const { data, error, count } = await supabase
     .from('sale_cars')
     .select('*, manufacturers(name)', { count: 'exact' })
-    .order('created_at', { ascending: false })
+    .order('sort_order', { ascending: true })
     .range(from, to);
 
   if (error) {
@@ -55,11 +55,10 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const manufacturerId = formData.get('manufacturer_id') as string;
   const name = formData.get('name') as string;
-  const description = formData.get('description') as string;
   const rentPrice = formData.get('rent_price') as string;
   const leasePrice = formData.get('lease_price') as string;
-  const immediate = formData.get('immediate') as string;
-  const isVisible = formData.get('is_visible') as string;
+  const immediateRaw = formData.get('immediate') as string;
+  const immediate = immediateRaw !== 'false';
   const thumbnail = formData.get('thumbnail') as File | null;
 
   // Validation
@@ -109,18 +108,23 @@ export async function POST(request: Request) {
     }
   }
 
+  // Auto-assign sort_order
+  const { count: currentCount } = await supabase
+    .from('sale_cars')
+    .select('*', { count: 'exact', head: true });
+  const sortOrder = currentCount ?? 0;
+
   // DB insert
   const { data: inserted, error: dbError } = await supabase
     .from('sale_cars')
     .insert({
       manufacturer_id: parseInt(manufacturerId, 10),
       name: name.trim(),
-      description: description?.trim() || null,
       thumbnail_path: thumbnailPath,
       rent_price: parsedRentPrice,
       lease_price: parsedLeasePrice,
-      immediate: immediate === 'true',
-      is_visible: isVisible === 'true',
+      immediate,
+      sort_order: sortOrder,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     })

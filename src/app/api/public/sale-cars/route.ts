@@ -7,27 +7,25 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from('sale_cars')
-    .select('sale_car_id, manufacturer_id, name, description, thumbnail_path, rent_price, lease_price, immediate, manufacturers!inner(manufacturer_id, name, category, is_visible)')
-    .eq('is_visible', true)
+    .select('sale_car_id, manufacturer_id, name, thumbnail_path, rent_price, lease_price, immediate, manufacturers!inner(manufacturer_id, name, category, logo_path, is_visible)')
     .eq('manufacturers.is_visible', true)
-    .order('updated_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) {
     return NextResponse.json({ error: 'Failed to fetch sale cars' }, { status: 500 });
   }
 
   const transformed = (data ?? []).map((row) => {
-    const mf = row.manufacturers as unknown as { manufacturer_id: number; name: string; category: string } | null;
+    const mf = row.manufacturers as unknown as { manufacturer_id: number; name: string; category: string; logo_path: string | null } | null;
     return {
       sale_car_id: row.sale_car_id,
       manufacturer_id: row.manufacturer_id,
       name: row.name,
-      description: row.description,
       thumbnail_url: getPublicImageUrl(row.thumbnail_path),
       rent_price: row.rent_price,
       lease_price: row.lease_price,
-      immediate: row.immediate ?? false,
-      manufacturer: mf ? { manufacturer_id: mf.manufacturer_id, name: mf.name, category: mf.category } : null,
+      immediate: row.immediate,
+      manufacturer: mf ? { manufacturer_id: mf.manufacturer_id, name: mf.name, category: mf.category, logo_url: mf.logo_path ? getPublicImageUrl(mf.logo_path) : null } : null,
     };
   });
 

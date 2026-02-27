@@ -87,8 +87,12 @@ export default function SaleCarDetailPage() {
             <p className="text-text-primary">{item.manufacturers?.name || '-'}</p>
           </div>
           <div>
-            <label className="block text-sm text-text-secondary mb-1">메인페이지 노출여부</label>
-            <p className="text-text-primary">{item.is_visible ? '노출' : '숨김'}</p>
+            <label className="block text-sm text-text-secondary mb-1">정렬 순서</label>
+            <p className="text-text-primary">{item.sort_order}</p>
+          </div>
+          <div>
+            <label className="block text-sm text-text-secondary mb-1">즉시출고</label>
+            <p className="text-text-primary">{item.immediate ? '예' : '아니오'}</p>
           </div>
           <div>
             <label className="block text-sm text-text-secondary mb-1">렌트 가격</label>
@@ -99,21 +103,11 @@ export default function SaleCarDetailPage() {
             <p className="text-text-primary">{formatPrice(item.lease_price)}</p>
           </div>
           <div>
-            <label className="block text-sm text-text-secondary mb-1">즉시출고</label>
-            <p className="text-text-primary">{item.immediate ? '즉시출고' : '-'}</p>
-          </div>
-          <div>
             <label className="block text-sm text-text-secondary mb-1">작성일</label>
             <p className="text-text-primary">
               {formatDate(item.created_at)}
             </p>
           </div>
-          {item.description && (
-            <div className="md:col-span-2">
-              <label className="block text-sm text-text-secondary mb-1">설명</label>
-              <p className="text-text-primary whitespace-pre-wrap">{item.description}</p>
-            </div>
-          )}
           {item.thumbnail_path && (
             <div className="md:col-span-2">
               <label className="block text-sm text-text-secondary mb-1">썸네일</label>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Pagination from '@/components/admin/Pagination';
+import ReorderButtons from '@/components/admin/ReorderButtons';
 import { formatDate } from '@/utils/formatters';
 import type { SaleCarWithManufacturer, PaginatedResponse } from '@/types/admin';
 
@@ -11,7 +12,9 @@ export default function SaleCarsListPage() {
   const [data, setData] = useState<SaleCarWithManufacturer[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [reordering, setReordering] = useState<number | null>(null);
 
   const fetchData = useCallback(async (p: number) => {
     setLoading(true);
@@ -24,6 +27,7 @@ export default function SaleCarsListPage() {
       const result: PaginatedResponse<SaleCarWithManufacturer> = await res.json();
       setData(result.data ?? []);
       setTotalPages(result.totalPages ?? 1);
+      setTotal(result.total ?? 0);
       setPage(result.page ?? 1);
     } catch {
       setData([]);
@@ -36,9 +40,29 @@ export default function SaleCarsListPage() {
     fetchData(page);
   }, [fetchData, page]);
 
-  const handlePageChange = (newPage: number) => {
-    setPage(newPage);
+  const handleReorder = async (
+    e: React.MouseEvent,
+    saleCarId: number,
+    direction: 'up' | 'down'
+  ) => {
+    e.stopPropagation();
+    setReordering(saleCarId);
+    try {
+      const res = await fetch('/api/admin/sale-cars/reorder', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ saleCarId, direction }),
+      });
+      if (res.ok) {
+        await fetchData(page);
+      }
+    } finally {
+      setReordering(null);
+    }
   };
+
+  const isFirst = (index: number) => page === 1 && index === 0;
+  const isLast = (index: number) => page === totalPages && index === data.length - 1;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
@@ -56,43 +80,42 @@ export default function SaleCarsListPage() {
         <table className="w-full table-fixed">
           <thead>
             <tr className="bg-primary-dark text-white text-sm">
-              <th className="px-4 py-3 text-left font-medium w-[18%]">차량명</th>
-              <th className="px-4 py-3 text-left font-medium w-[30%]">설명</th>
-              <th className="px-4 py-3 text-left font-medium w-[14%]">제조사</th>
-              <th className="px-4 py-3 text-center font-medium w-[10%]">즉시출고</th>
-              <th className="px-4 py-3 text-left font-medium w-[18%]">작성날짜</th>
-              <th className="px-4 py-3 text-center font-medium w-[10%]">노출</th>
+              <th className="px-3 py-3 text-center font-medium w-[12%]">정렬</th>
+              <th className="px-4 py-3 text-left font-medium w-[34%]">차량명</th>
+              <th className="px-4 py-3 text-left font-medium w-[26%]">제조사</th>
+              <th className="px-4 py-3 text-left font-medium w-[28%]">작성날짜</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={6} className="p-8 text-center text-text-secondary">로딩 중...</td>
+                <td colSpan={4} className="p-8 text-center text-text-secondary">로딩 중...</td>
               </tr>
             ) : data.length === 0 ? (
               <tr>
-                <td colSpan={6} className="p-8 text-center text-text-secondary">등록된 판매차량이 없습니다</td>
+                <td colSpan={4} className="p-8 text-center text-text-secondary">등록된 판매차량이 없습니다</td>
               </tr>
             ) : (
-              data.map((item) => (
+              data.map((item, index) => (
                 <tr
                   key={item.sale_car_id}
                   onClick={() => router.push(`/admin/sale-cars/${item.sale_car_id}`)}
                   className="border-t border-border hover:bg-bg-secondary cursor-pointer transition-colors"
                 >
+                  <td className="px-3 py-3 text-center" onClick={(e) => e.stopPropagation()}>
+                    <ReorderButtons
+                      onUp={(e) => handleReorder(e, item.sale_car_id, 'up')}
+                      onDown={(e) => handleReorder(e, item.sale_car_id, 'down')}
+                      disabledUp={isFirst(index) || reordering === item.sale_car_id}
+                      disabledDown={isLast(index) || reordering === item.sale_car_id}
+                    />
+                  </td>
                   <td className="px-4 py-3 text-sm text-text-primary font-medium">{item.name}</td>
-                  <td className="px-4 py-3 text-sm text-text-secondary truncate">{item.description || '-'}</td>
                   <td className="px-4 py-3 text-sm text-text-secondary">
                     {item.manufacturers?.name || '-'}
                   </td>
-                  <td className="px-4 py-3 text-sm text-center">
-                    {item.immediate ? <span className="text-badge-immediate font-medium">해당</span> : '-'}
-                  </td>
                   <td className="px-4 py-3 text-sm text-text-secondary">
                     {formatDate(item.created_at)}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-center">
-                    <span className={`inline-block w-2 h-2 rounded-full ${item.is_visible ? 'bg-green-500' : 'bg-gray-300'}`} />
                   </td>
                 </tr>
               ))
@@ -101,8 +124,8 @@ export default function SaleCarsListPage() {
         </table>
       </div>
 
-      {!loading && data.length > 0 && (
-        <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
+      {!loading && total > 0 && (
+        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
       )}
     </div>
   );

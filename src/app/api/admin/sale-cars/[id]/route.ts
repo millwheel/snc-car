@@ -64,11 +64,10 @@ export async function PUT(
   const formData = await request.formData();
   const manufacturerId = formData.get('manufacturer_id') as string;
   const name = formData.get('name') as string;
-  const description = formData.get('description') as string;
   const rentPrice = formData.get('rent_price') as string;
   const leasePrice = formData.get('lease_price') as string;
-  const immediate = formData.get('immediate') as string;
-  const isVisible = formData.get('is_visible') as string;
+  const immediateRaw = formData.get('immediate') as string;
+  const immediate = immediateRaw !== 'false';
   const thumbnail = formData.get('thumbnail') as File | null;
 
   if (!manufacturerId) {
@@ -91,12 +90,13 @@ export async function PUT(
     }
 
     const ext = thumbnail.name.split('.').pop() || 'webp';
-    newThumbnailPath = `sale-cars/${saleCarId}/thumb.${ext}`;
+    const uuid = crypto.randomUUID();
+    newThumbnailPath = `sale-cars/${uuid}/thumb.${ext}`;
 
     const arrayBuffer = await thumbnail.arrayBuffer();
     const { error: uploadError } = await supabase.storage
       .from(BUCKET)
-      .upload(newThumbnailPath, arrayBuffer, { contentType: thumbnail.type, upsert: true });
+      .upload(newThumbnailPath, arrayBuffer, { contentType: thumbnail.type, upsert: false });
 
     if (uploadError) {
       return NextResponse.json({ error: '이미지 업로드 실패: ' + uploadError.message }, { status: 500 });
@@ -106,11 +106,9 @@ export async function PUT(
   const updateData: Record<string, unknown> = {
     manufacturer_id: parseInt(manufacturerId, 10),
     name: name.trim(),
-    description: description?.trim() || null,
     rent_price: parsedRentPrice,
     lease_price: parsedLeasePrice,
-    immediate: immediate === 'true',
-    is_visible: isVisible === 'true',
+    immediate,
     updated_at: new Date().toISOString(),
   };
 
@@ -130,6 +128,11 @@ export async function PUT(
       await supabase.storage.from(BUCKET).remove([newThumbnailPath]);
     }
     return NextResponse.json({ error: 'DB 수정 실패: ' + dbError.message }, { status: 500 });
+  }
+
+  // Delete old image from storage if a new one was uploaded and paths differ
+  if (newThumbnailPath && existing.thumbnail_path && existing.thumbnail_path !== newThumbnailPath) {
+    await supabase.storage.from(BUCKET).remove([existing.thumbnail_path]);
   }
 
   const transformed = {
@@ -155,7 +158,7 @@ export async function DELETE(
 
   const { data: existing, error: fetchError } = await supabase
     .from('sale_cars')
-    .select('thumbnail_path')
+    .select('thumbnail_path, sort_order')
     .eq('sale_car_id', saleCarId)
     .single();
 
@@ -170,6 +173,23 @@ export async function DELETE(
 
   if (deleteError) {
     return NextResponse.json({ error: 'DB 삭제 실패: ' + deleteError.message }, { status: 500 });
+  }
+
+  // Decrement sort_order for all items after the deleted one
+  const { data: higherItems } = await supabase
+    .from('sale_cars')
+    .select('sale_car_id, sort_order')
+    .gt('sort_order', existing.sort_order);
+
+  if (higherItems && higherItems.length > 0) {
+    await Promise.all(
+      higherItems.map((item) =>
+        supabase
+          .from('sale_cars')
+          .update({ sort_order: item.sort_order - 1 })
+          .eq('sale_car_id', item.sale_car_id)
+      )
+    );
   }
 
   // Delete image from storage after successful DB delete
