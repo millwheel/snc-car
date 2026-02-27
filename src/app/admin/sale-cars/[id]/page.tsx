@@ -99,10 +99,6 @@ export default function SaleCarDetailPage() {
             <p className="text-text-primary">{formatPrice(item.lease_price)}</p>
           </div>
           <div>
-            <label className="block text-sm text-text-secondary mb-1">즉시출고</label>
-            <p className="text-text-primary">{item.immediate ? '즉시출고' : '-'}</p>
-          </div>
-          <div>
             <label className="block text-sm text-text-secondary mb-1">작성일</label>
             <p className="text-text-primary">
               {formatDate(item.created_at)}

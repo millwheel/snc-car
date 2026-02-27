@@ -12,6 +12,5 @@ export interface SaleCar {
   thumbnail_url: string | null;
   rent_price: number | null;
   lease_price: number | null;
-  immediate: boolean;
   manufacturer: SaleCarManufacturer | null;
 }
